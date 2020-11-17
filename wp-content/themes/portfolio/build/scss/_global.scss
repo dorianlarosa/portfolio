@@ -1,0 +1,234 @@
+@import 'variables.scss';
+
+@import '../../node_modules/bootstrap/scss/bootstrap-grid';
+@import '../../node_modules/bootstrap/scss/bootstrap-reboot';
+@import '../../node_modules/bootstrap/scss/mixins/breakpoints';
+
+
+
+////// 
+//GLOBAL
+//////
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background:$white;
+    cursor: none; 
+
+    a, button {
+        cursor: none;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: $font-family-text;
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+// BUTTON
+
+button:focus {
+    outline: none;
+}
+
+.btn {
+    padding: 12px 35px;
+    background-color: $action;
+    color:$white;
+    border: none;
+    text-transform: uppercase;
+    font-family: $font-family-title;
+}
+
+
+
+////////////////
+// CURSOR
+///////////////
+.cursor {
+    position: absolute;
+    background: white;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    z-index: 100;
+    transition: 0.5s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+        0.2s cubic-bezier(0.75, -1.27, 0.3, 2.33) opacity;
+    user-select: none;
+    pointer-events: none;
+    transform: scale(0.8);
+    mix-blend-mode: difference;
+}
+
+.cursor::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    background-image: url("http://mirkozeppieri.emanuelepapale.com/wp-content/uploads/2018/07/project-hover-cursor.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100%;
+    opacity: 0;
+}
+
+.cursor.active-projet {
+    opacity: 1;
+    transform: scale(12);
+}
+
+.cursor.active-projet::before {
+    opacity: 1;
+}
+
+.cursor-follower {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    z-index: 100;
+    transition: 0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+        0.4s cubic-bezier(0.75, -1.27, 0.3, 2.33) opacity;
+    user-select: none;
+    pointer-events: none;
+    transform: translate(4px, 4px);
+    mix-blend-mode: difference;
+}
+
+.cursor-follower.active-projet {
+    opacity: 0.3;
+    transform: scale(0);
+}
+
+////////////////
+// SECTION
+////////////////
+
+.container-fluid {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+section:not(#header-section) {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    // TITLE SECTION
+    h2 {
+        font-size: 27px;
+        text-transform: uppercase;
+        font-family: $font-family-title;
+        text-align: center;
+        color: $primary;
+        margin-left: auto;
+        margin-right: auto;
+
+        // SPAN COLOR TITLE SECTION
+        span {
+            color: $action;
+        }
+
+        @include media-breakpoint-up(sm) {
+            font-size: 35px;
+            width: 50%;
+        }
+
+        @include media-breakpoint-up(md) {
+            font-size: 45px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            font-size: 50px;
+
+        }
+
+        @include media-breakpoint-up(xl) {
+            font-size: 55px;
+        }
+    }
+
+    h3 {
+        font-size: 23px;
+        text-transform: uppercase;
+        font-family: $font-family-title;
+        text-align: center;
+        color: $primary;
+        margin-left: auto;
+        margin-right: auto;
+
+        // SPAN COLOR TITLE
+        span {
+            color: $action;
+        }
+
+  
+
+        @include media-breakpoint-up(md) {
+            font-size: 27px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            font-size: 29px;
+        }
+
+        @include media-breakpoint-up(xl) {
+            font-size: 31px;
+        }
+    }
+
+
+    // TEXT INTRO SECTION
+    .text-section {
+        margin-top: 30px;
+        text-align: center;
+        color: $primary;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include media-breakpoint-up(md) {
+            width:50%;
+        }
+
+        @include media-breakpoint-up(lg) {
+            width: 50%;
+
+        }
+    }
+
+}
