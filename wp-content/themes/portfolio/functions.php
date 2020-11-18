@@ -172,6 +172,8 @@ add_action('wp_enqueue_scripts', 'vcn_enqueue_style');
 // enqueue script
 function vcn_enqueue_script()
 {
+
+  wp_deregister_script ('jquery');
   wp_enqueue_script ( 'gsap-js' , 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js' , array (), false , true ); 
   
  

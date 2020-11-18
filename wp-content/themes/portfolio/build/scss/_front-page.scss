@@ -169,7 +169,7 @@ $navbar-height-mobile:68px;
     background: $white;
 
     .element {
-        margin-top: 50px;
+        margin-top: 4rem;
         align-items: center;
 
         .col-element {
@@ -177,7 +177,7 @@ $navbar-height-mobile:68px;
             flex-direction: column;
             align-items: center;
 
-            @include media-breakpoint-up(md) {
+            @include media-breakpoint-up(lg) {
                 align-items: start;
             }
 
@@ -187,7 +187,7 @@ $navbar-height-mobile:68px;
                 font-family: $font-family-text;
                 text-align: center;
 
-                @include media-breakpoint-up(md) {
+                @include media-breakpoint-up(lg) {
                     text-align: initial;
                 }
             }
@@ -195,7 +195,7 @@ $navbar-height-mobile:68px;
             h3 {
                 margin-top: .5rem;
 
-                @include media-breakpoint-up(md) {
+                @include media-breakpoint-up(lg) {
                     text-align: initial;
                     margin-left: 0;
                 }
@@ -203,9 +203,9 @@ $navbar-height-mobile:68px;
 
             .text {
                 text-align: center;
-                margin-top: 1rem;
+                margin-top: 2rem;
 
-                @include media-breakpoint-up(md) {
+                @include media-breakpoint-up(lg) {
                     text-align: initial;
                 }
             }
@@ -215,13 +215,11 @@ $navbar-height-mobile:68px;
                 height: auto;
             }
 
-            .link-btn {
+            .btn {
+                margin-top: 2rem;
 
-                .btn {
-                    margin-top: 1rem;
-
-                }
             }
+
         }
 
 
@@ -230,20 +228,31 @@ $navbar-height-mobile:68px;
 
 #section-projets {
 
-
     background: linear-gradient(to top, $primary 80%, $white 0);
 
     .content {
 
         .item-projet {
-            width: 60%;
-            margin-top: 100px;
+            width: 100%;
+            margin-top: 4rem;
+
+            @include media-breakpoint-up(sm) {
+                width: 80%;
+            }
+
+            @include media-breakpoint-up(md) {
+                width: 70%;
+            }
+
+            @include media-breakpoint-up(lg) {
+                width: 60%;
+            }
 
             &:nth-child(2n) {
                 margin-left: auto;
             }
 
-            &:hover {
+            &.hover {
                 .item-imgwrap {
 
                     img {
@@ -252,17 +261,20 @@ $navbar-height-mobile:68px;
                     }
 
                 }
+
+                .title-projet {
+                    color: $white;
+                    -webkit-text-stroke: 1px $white;
+                }
             }
 
             .item-imgwrap {
                 overflow: hidden;
-                transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
 
                 .item-img {
                     width: 100%;
                     height: auto;
-                    transition: all 0.5s cubic-bezier(0.25, 1, 0.3, 1);
-                    transform-origin: 90% center;
+                    transition: all 1.5s cubic-bezier(0.25, 1, 0.3, 1);
                 }
 
             }
@@ -270,15 +282,44 @@ $navbar-height-mobile:68px;
             .title-projet {
                 text-align: left;
                 margin-top: 20px;
-                color: $white;
-                font-size: 45px;
+                color: transparent;
+                font-size: 30px;
+                -webkit-text-stroke: 1px $white;
+                transition: all .5s;
+                margin-left:initial;
+                margin-right:initial;
+                width:100%;
+
+                @include media-breakpoint-up(sm) {
+                    font-size: 45px;
+
+                }
+
+                @include media-breakpoint-up(md) {
+                    font-size: 60px;
+
+                }
             }
 
             .description-projet {
                 margin-top: 10px;
                 color: rgb(194, 194, 194);
-                width: 50%;
+                width: 100%;
                 font-size: 15px;
+
+
+
+                @include media-breakpoint-up(md) {
+                    width: 80%;
+                }
+
+                @include media-breakpoint-up(lg) {
+                    width: 70%;
+                }
+
+                @include media-breakpoint-up(xl) {
+                    width: 50%;
+                }
             }
         }
 

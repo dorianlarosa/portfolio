@@ -118,10 +118,17 @@ var cursor = document.querySelector(".cursor"),
 var posX = 0,
     posY = 0,
     mouseX = 0,
-    mouseY = 0;
+    mouseY = 0,
+    otherPosX = 0,
+    otherPosY = 0,
+
+    mouseOfWindowX = 0,
+    mouseOfWindowY = 0;
 
 var lastScrolledLeft = window.scrollX;
 var lastScrolledTop = window.scrollY;
+
+
 
 // cursor follow mouse position
 TweenMax.to({}, 0.016, {
@@ -129,6 +136,9 @@ TweenMax.to({}, 0.016, {
     onRepeat: function () {
         posX += (mouseX - posX) / 9;
         posY += (mouseY - posY) / 9;
+
+        otherPosX += (mouseX - otherPosX) / 4;
+        otherPosY += (mouseY - otherPosY) / 4;
 
         TweenMax.set(follower, {
             css: {
@@ -139,8 +149,8 @@ TweenMax.to({}, 0.016, {
 
         TweenMax.set(cursor, {
             css: {
-                left: mouseX,
-                top: mouseY
+                left: otherPosX,
+                top: otherPosY
             }
         });
     }
@@ -148,8 +158,14 @@ TweenMax.to({}, 0.016, {
 
 // Update mouse position when mouse move
 document.addEventListener('mousemove', function (e) {
+
+    // Update mouse position
     mouseX = e.pageX;
     mouseY = e.pageY;
+
+    // Stock mouse position relative of screen
+    mouseOfWindowX = e.clientX;
+    mouseOfWindowY = e.clientY;
 });
 
 
@@ -160,24 +176,63 @@ function mouseScroll(e) {
     var differenceScrollY = window.scrollY - lastScrolledTop;
     var differenceScrollX = window.scrollX - lastScrolledLeft;
 
-    mouseX +=  differenceScrollX;
-    mouseY +=  differenceScrollY;
+    mouseX += differenceScrollX;
+    mouseY += differenceScrollY;
     lastScrolledTop = window.scrollY;
     lastScrolledLeft = window.scrollX;
+
+    // var for break in forEach
+    let shouldSkip = false;
+
+
+    [].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
+        var offsetTopProject = el.offsetTop - mouseOfWindowY;
+        var offsetBottomProject = offsetTopProject + el.offsetHeight;
+
+        var offsetLeftProject = el.offsetLeft - mouseOfWindowX;
+        var offsetRightProject = offsetLeftProject + el.offsetWidth;
+
+
+        if (lastScrolledTop > offsetTopProject && lastScrolledTop < offsetBottomProject &&
+            lastScrolledLeft > offsetLeftProject && lastScrolledLeft < offsetRightProject) {
+            addCursorProject(el);
+            shouldSkip = true;
+        } else if (!shouldSkip) {
+            removeCursorProject(el);
+        }
+    });
 }
 
+function addCursorProject(el) {
+    cursor.classList.add("active-projet");
+    follower.classList.add("active-projet");
+    el.classList.add("hover");
+
+}
+
+function removeCursorProject(el) {
+    cursor.classList.remove("active-projet");
+    follower.classList.remove("active-projet");
+    el.classList.remove("hover");
+
+}
+
+
+
 // Change cursor when mouse enter in project
-[].forEach.call(document.querySelectorAll('.item-projet img'), function (el) {
+[].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
     el.addEventListener('mouseenter', function () {
-        cursor.classList.add("active-projet");
-        follower.classList.add("active-projet");
+        addCursorProject(el);
+
     })
+
 });
 
 // Change cursor when mouse leave in project
-[].forEach.call(document.querySelectorAll('.item-projet img'), function (el) {
+[].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
     el.addEventListener('mouseleave', function () {
-        cursor.classList.remove("active-projet");
-        follower.classList.remove("active-projet");
+        removeCursorProject(el);
+
     })
+
 });

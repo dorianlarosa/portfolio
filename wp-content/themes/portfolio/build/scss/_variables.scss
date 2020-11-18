@@ -40,7 +40,16 @@ monospace;
     }
 }
 
+@mixin hover-detect {
+    @media not all and (pointer: coarse) {
+
+        @content;
+
+    }
+}
+
 
 $action : rgb(116, 54, 209);
 $white : rgb(255, 255, 255);
 $primary : rgb(10, 15, 22);
+$grey : rgb(179, 179, 179);

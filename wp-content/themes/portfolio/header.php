@@ -12,6 +12,7 @@
 </head>
 
 <body>
+<main>
 
     <!-- CURSOR JS -->
     <div class="cursor"></div>
@@ -27,7 +28,7 @@
                 </a>
             </div>
 
-            <button class="menu-btn">
+            <div class="menu-btn">
                 <div class="content">
                     <span class="text">
                         Open
@@ -36,7 +37,7 @@
                         Close
                     </span>
                 </div>
-            </button>
+            </div>
 
             <nav class="nav">
                 <div class="nav__inner">

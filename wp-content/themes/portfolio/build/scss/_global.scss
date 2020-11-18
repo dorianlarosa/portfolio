@@ -16,10 +16,16 @@
 }
 
 body {
-    background:$white;
-    cursor: none; 
+    background: $white;
+    cursor: none;
 
-    a, button {
+    main {
+        overflow: hidden;
+        position: relative;
+    }
+
+    a,
+    button {
         cursor: none;
     }
 }
@@ -39,10 +45,14 @@ h6 {
 }
 
 p {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     font-family: $font-family-text;
     margin: 0;
+
+    @include media-breakpoint-up(sm) {
+        font-size: 16px;
+    }
 }
 
 ul {
@@ -63,7 +73,7 @@ button:focus {
 .btn {
     padding: 12px 35px;
     background-color: $action;
-    color:$white;
+    color: $white;
     border: none;
     text-transform: uppercase;
     font-family: $font-family-title;
@@ -81,12 +91,17 @@ button:focus {
     height: 8px;
     border-radius: 100%;
     z-index: 100;
-    transition: 0.5s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+    transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
         0.2s cubic-bezier(0.75, -1.27, 0.3, 2.33) opacity;
     user-select: none;
     pointer-events: none;
     transform: scale(0.8);
     mix-blend-mode: difference;
+    display: none;
+
+    @include hover-detect {
+        display: block;
+    }
 }
 
 .cursor::before {
@@ -97,17 +112,19 @@ button:focus {
     top: 0;
     left: 0;
     display: block;
-    background-image: url("http://mirkozeppieri.emanuelepapale.com/wp-content/uploads/2018/07/project-hover-cursor.jpg");
+    background-image: url("images/view-project.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 100%;
     opacity: 0;
+
 }
 
 .cursor.active-projet {
     opacity: 1;
     transform: scale(12);
+
 }
 
 .cursor.active-projet::before {
@@ -116,17 +133,24 @@ button:focus {
 
 .cursor-follower {
     position: absolute;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: 1px solid $white;
     width: 40px;
     height: 40px;
     border-radius: 100%;
     z-index: 100;
-    transition: 0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+    transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
         0.4s cubic-bezier(0.75, -1.27, 0.3, 2.33) opacity;
     user-select: none;
     pointer-events: none;
     transform: translate(4px, 4px);
     mix-blend-mode: difference;
+
+    display: none;
+
+    @include hover-detect {
+        display: block;
+    }
 }
 
 .cursor-follower.active-projet {
@@ -145,9 +169,15 @@ button:focus {
     }
 }
 
-section:not(#header-section) {
+section:not(#header-section),
+footer {
     padding-top: 70px;
     padding-bottom: 70px;
+
+    &.footer {
+        padding-bottom: 0px;
+
+    }
 
     // TITLE SECTION
     h2 {
@@ -158,6 +188,7 @@ section:not(#header-section) {
         color: $primary;
         margin-left: auto;
         margin-right: auto;
+        width: 73%;
 
         // SPAN COLOR TITLE SECTION
         span {
@@ -166,7 +197,7 @@ section:not(#header-section) {
 
         @include media-breakpoint-up(sm) {
             font-size: 35px;
-            width: 50%;
+            width: 70%;
         }
 
         @include media-breakpoint-up(md) {
@@ -180,6 +211,7 @@ section:not(#header-section) {
 
         @include media-breakpoint-up(xl) {
             font-size: 55px;
+            width: 60%;
         }
     }
 
@@ -191,16 +223,21 @@ section:not(#header-section) {
         color: $primary;
         margin-left: auto;
         margin-right: auto;
+        width: 80%;
+
 
         // SPAN COLOR TITLE
         span {
             color: $action;
         }
 
-  
+        @include media-breakpoint-up(md) {
+            width: 70%;
+        }
 
         @include media-breakpoint-up(md) {
             font-size: 27px;
+
         }
 
         @include media-breakpoint-up(lg) {
@@ -220,14 +257,37 @@ section:not(#header-section) {
         color: $primary;
         margin-left: auto;
         margin-right: auto;
+        width: 90%;
 
-        @include media-breakpoint-up(md) {
-            width:50%;
+
+        @include media-breakpoint-up(sm) {
+            width: 80%;
         }
 
-        @include media-breakpoint-up(lg) {
-            width: 50%;
+        @include media-breakpoint-up(md) {
+            width: 70%;
+        }
 
+        @include media-breakpoint-up(xl) {
+            width: 60%;
+        }
+    }
+
+    .text {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include media-breakpoint-up(sm) {
+            width: 80%;
+        }
+
+        @include media-breakpoint-up(md) {
+            width: 70%;
+        }
+
+        @include media-breakpoint-up(xl) {
+            width: 60%;
         }
     }
 
