@@ -133,7 +133,7 @@ function disable_embeds_rewrites($rules)
  ******/
 remove_action('wp_head', 'wp_generator');
 remove_action('wp_head', 'wlwmanifest_link');
-remove_action ('wp_head', 'rsd_link');
+remove_action('wp_head', 'rsd_link');
 
 
 // Disable REST API link tag
@@ -173,13 +173,13 @@ add_action('wp_enqueue_scripts', 'vcn_enqueue_style');
 function vcn_enqueue_script()
 {
 
-  wp_deregister_script ('jquery');
-  wp_enqueue_script ( 'gsap-js' , 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js' , array (), false , true ); 
-  
- 
+  wp_deregister_script('jquery');
+  wp_enqueue_script('gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js', array(), false, true);
+
+
 
   wp_enqueue_script('my-js-theme', get_template_directory_uri() . '/js/script.js', [], false, true);
-  //wp_localize_script('my-js-theme', 'adminAjax', admin_url('admin-ajax.php'));
+  wp_localize_script('my-js-theme', 'adminAjax', admin_url('admin-ajax.php'));
 }
 
 
@@ -194,14 +194,14 @@ add_action('wp_enqueue_scripts', 'vcn_enqueue_script', 11);
 // Removing front end admin bar because it's ugly
 add_filter('show_admin_bar', '__return_false');
 
-function wpc_theme_support() {
-	add_theme_support('custom-logo', array(
-		'flex-height' => true,
-		'flex-width'  => true,
+function wpc_theme_support()
+{
+  add_theme_support('custom-logo', array(
+    'flex-height' => true,
+    'flex-width'  => true,
   ));
-  
 }
-add_action('after_setup_theme','wpc_theme_support');
+add_action('after_setup_theme', 'wpc_theme_support');
 
 /******
  * add menu admin
@@ -214,3 +214,102 @@ add_action('init', 'register_my_menus');
 
 
 
+// VERIFICATION FORM
+
+
+function form_validation_response($type, $message)
+{
+  $class = 'px-2 py-1 mb-6 rounded-md'; // These are tailwind classes, but it could be bootstrap
+  if ($type == 'success') {
+    $class .= "border border-green-800 text-green-700";
+  } else {
+    $class .= "border border-redish text-redish";
+  }
+
+  return "<div class='{$class}'>{$message}</div>";
+}
+
+
+// AJAX FORM
+
+add_action('wp_ajax_verification_form', 'verification_form');
+add_action('wp_ajax_nopriv_verification_form', 'verification_form');
+
+function verification_form()
+{
+  $arrayResponse = array(
+    'status' => '',
+    'errors' => array()
+  );
+
+  // Message verification response
+  $not_human       = "not_human";
+  $name_invalid    = "name_invalid";
+  $email_invalid   = "email_invalid";
+  $project_invalid = "project_invalid";
+  $service_invalid = "service_invalid";
+  $phone_invalid = "phone_invalid";
+  $website_invalid = "website_invalid";
+
+  $message_unsent  = "message_unsent";
+  $message_sent    = "message_sent";
+
+  $missing_name    = "missing_name";
+  $missing_email    = "missing_email";
+  $missing_project    = "missing_project";
+  $missing_service    = "missing_service";
+  $missing_phone    = "missing_phone";
+
+  // Message verification response
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $project = filter_var($_POST['project'], FILTER_SANITIZE_STRING);
+  $service = filter_var($_POST['service'], FILTER_SANITIZE_STRING);
+  $phone = $_POST['phone'];
+  $website = $_POST['website'];
+
+
+  // MISSING FIELD
+  if (empty($name)) {
+    array_push($arrayResponse['errors'], $missing_name);
+  } else if (preg_match('/[^A-Za-zÀÁÂÃÄÅÇÑñÇçÈÉÊËÌÍÎÏÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöøùúûüýÿ -]/', $name)) {
+    array_push($arrayResponse['errors'], $name_invalid);
+  }
+
+  if (empty($email)) {
+    array_push($arrayResponse['errors'], $missing_email);
+  } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    array_push($arrayResponse['errors'], $email_invalid);
+  }
+
+  if (empty($project)) {
+    array_push($arrayResponse['errors'], $missing_project);
+  }
+
+  if (empty($service)) {
+    array_push($arrayResponse['errors'], $missing_service);
+  }
+
+  if (empty($phone)) {
+    array_push($arrayResponse['errors'], $missing_phone);
+  } else if (preg_match('/[^0-9+() -]/', $phone)) {
+    array_push($arrayResponse['errors'], $phone_invalid);
+  }
+  if (!empty($website)) {
+    $website = strpos($website, 'http') !== 0 ? "http://$website" : $website;
+    if (!filter_var($website, FILTER_VALIDATE_URL)) {
+      array_push($arrayResponse['errors'], $website_invalid);
+    }
+  }
+
+
+  if (!empty($arrayResponse['errors'])) {
+    $arrayResponse['status'] = 'error';
+  } else {
+    $arrayResponse['status'] = 'succes';
+  }
+
+  echo json_encode($arrayResponse);
+
+  wp_die();
+}

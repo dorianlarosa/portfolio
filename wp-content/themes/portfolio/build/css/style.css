@@ -5463,7 +5463,9 @@ ul li {
   list-style: none;
 }
 
-button:focus {
+button:focus,
+input:focus,
+textarea:focus {
   outline: none;
 }
 
@@ -5474,6 +5476,11 @@ button:focus {
   border: none;
   text-transform: uppercase;
   font-family: "Titillium Web", cursive, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+@media not all and (pointer: coarse) {
+  .btn:hover {
+    color: white;
+  }
 }
 
 .cursor {
@@ -5495,7 +5502,30 @@ button:focus {
     display: block;
   }
 }
-
+.cursor.active-projet {
+  opacity: 1;
+  transform: scale(12);
+}
+.cursor.active-projet::before {
+  opacity: 1;
+}
+.cursor.active-click {
+  opacity: 1;
+  transform: scale(8);
+}
+.cursor.active-click::before {
+  opacity: 1;
+  background-image: none;
+}
+.cursor.active-btn {
+  opacity: 0.9;
+  transform: scale(8);
+  mix-blend-mode: initial;
+  background: black;
+}
+.cursor.active-btn::before {
+  opacity: 1;
+}
 .cursor::before {
   content: "";
   width: 100%;
@@ -5512,19 +5542,10 @@ button:focus {
   opacity: 0;
 }
 
-.cursor.active-projet {
-  opacity: 1;
-  transform: scale(12);
-}
-
-.cursor.active-projet::before {
-  opacity: 1;
-}
-
 .cursor-follower {
   position: absolute;
   background: transparent;
-  border: 1px solid white;
+  border: 1px solid #7436d1;
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -5533,7 +5554,6 @@ button:focus {
   user-select: none;
   pointer-events: none;
   transform: translate(4px, 4px);
-  mix-blend-mode: difference;
   display: none;
 }
 @media not all and (pointer: coarse) {
@@ -5541,9 +5561,8 @@ button:focus {
     display: block;
   }
 }
-
-.cursor-follower.active-projet {
-  opacity: 0.3;
+.cursor-follower.active-projet, .cursor-follower.active-click, .cursor-follower.active-btn {
+  opacity: 0;
   transform: scale(0);
 }
 
@@ -5811,6 +5830,184 @@ footer .bottom-footer .links a:last-of-type {
   margin-left: 20px;
 }
 
+#form-section {
+  background: white;
+  background: linear-gradient(to top, #0a0f16 20%, white 0);
+}
+#form-section .container-form {
+  width: 100%;
+  max-width: 900px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4rem;
+  box-shadow: 0 0 20px #00000021;
+}
+#form-section .container-form .form {
+  width: 400%;
+  display: flex;
+}
+#form-section .container-form .form.page-1 {
+  transform: translateX(0);
+}
+#form-section .container-form .form.page-2 {
+  transform: translateX(-25%);
+}
+#form-section .container-form .form.page-3 {
+  transform: translateX(-50%);
+}
+#form-section .container-form .form.page-4 {
+  transform: translateX(-75%);
+}
+#form-section .container-form .form .page-form {
+  width: 25%;
+  position: relative;
+}
+#form-section .container-form .form .page-form .page-form__content {
+  position: relative;
+  padding: 40px 15px 200px 15px;
+  height: 100%;
+  background: white;
+}
+@media (min-width: 576px) {
+  #form-section .container-form .form .page-form .page-form__content {
+    padding: 70px 40px 170px 40px;
+  }
+}
+@media (min-width: 768px) {
+  #form-section .container-form .form .page-form .page-form__content {
+    padding: 100px 80px 205px 80px;
+  }
+}
+#form-section .container-form .form .page-form .page-form__content .page-form__title {
+  font-family: "Titillium Web", cursive, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 21px;
+  color: #0a0f16;
+}
+@media (min-width: 768px) {
+  #form-section .container-form .form .page-form .page-form__content .page-form__title {
+    font-size: 30px;
+  }
+}
+#form-section .container-form .form .page-form .page-form__content hr {
+  border: 2px solid #0a0f16;
+  width: 30px;
+  margin: 1rem auto 2rem auto;
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  #form-section .container-form .form .page-form .page-form__content hr {
+    border: 4px solid #0a0f16;
+    width: 50px;
+    margin: 2rem auto 3rem auto;
+  }
+}
+#form-section .container-form .form .page-form .page-form__content .container-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+}
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field {
+  position: relative;
+}
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field.container-field-error input,
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field.container-field-error textarea {
+  border-color: red;
+}
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field.container-field-error .error-field-text {
+  display: block;
+}
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field input,
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field textarea {
+  padding: 15px;
+  width: 100%;
+  border: 2px solid #ededee;
+  background: #ededee;
+  border-radius: 0px !important;
+  transition: all 0.4s;
+  font-size: 14px;
+}
+@media (min-width: 576px) {
+  #form-section .container-form .form .page-form .page-form__content .container-inputs .container-field input,
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field textarea {
+    font-size: 16px;
+    padding: 15px 25px;
+  }
+}
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field input::placeholder,
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field textarea::placeholder {
+  color: #919191;
+  font-family: "Manrope", sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field input:focus, #form-section .container-form .form .page-form .page-form__content .container-inputs .container-field input:active,
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field textarea:focus,
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field textarea:active {
+  border: 2px solid #0a0f16;
+  border-radius: 0px !important;
+}
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field textarea {
+  height: 100%;
+  max-height: 100%;
+}
+#form-section .container-form .form .page-form .page-form__content .container-inputs .container-field .error-field-text {
+  color: red;
+  font-size: 12px;
+  font-family: "Manrope", sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  position: absolute;
+  transform: translateY(100%);
+  bottom: -5px;
+  left: 0;
+  display: none;
+}
+#form-section .container-form .form .page-form .page-form__bar-bottom {
+  background: #ededee;
+  display: flex;
+  justify-content: center;
+  padding: 20px 20px 60px 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (min-width: 576px) {
+  #form-section .container-form .form .page-form .page-form__bar-bottom {
+    padding: 20px;
+  }
+}
+#form-section .container-form .form .page-form .page-form__bar-bottom .page-status {
+  position: absolute;
+  top: -10px;
+  transform: translateY(-100%);
+  color: #919191;
+}
+#form-section .container-form .form .page-form .page-form__bar-bottom .btn {
+  display: inline-block;
+}
+#form-section .container-form .form .page-form .page-form__bar-bottom .previous-page {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 1px dashed #b3b3b3;
+}
+@media (min-width: 576px) {
+  #form-section .container-form .form .page-form .page-form__bar-bottom .previous-page {
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    bottom: initial;
+  }
+}
+#form-section .container-form .form .page-form .page-form__bar-bottom .previous-page svg {
+  color: #b3b3b3;
+  margin-right: 5px;
+}
+#form-section .container-form .form .page-form .page-form__bar-bottom .previous-page span {
+  color: #b3b3b3;
+}
+
 #header-section {
   height: 95vh;
   background-color: #0a0f16;
@@ -5978,6 +6175,11 @@ footer .bottom-footer .links a:last-of-type {
     align-items: start;
   }
 }
+@media (min-width: 992px) {
+  #a-propos-section .element .col-element.col-element__text {
+    padding: 50px;
+  }
+}
 #a-propos-section .element .col-element .pre-title {
   font-size: 15px;
   font-weight: 700;
@@ -6004,6 +6206,7 @@ footer .bottom-footer .links a:last-of-type {
 }
 @media (min-width: 992px) {
   #a-propos-section .element .col-element .text {
+    width: 100%;
     text-align: initial;
   }
 }
@@ -6124,42 +6327,42 @@ footer .bottom-footer .links a:last-of-type {
     width: 270px;
   }
 }
-#navbar .menu-btn {
-  border: none;
-  background: none;
-  width: 50px;
-  height: 20px;
-  z-index: 10;
-  cursor: pointer;
-  overflow: hidden;
+#navbar .hamburger {
+  z-index: 7;
+  fill: #fafafa;
+  mix-blend-mode: difference;
+  padding: 10px;
+  overflow: visible;
 }
-#navbar .menu-btn.active .content .text:nth-child(1) {
-  --translate-y: -150px;
-}
-#navbar .menu-btn.active .content .text:nth-child(2) {
-  --translate-y: 0%;
-}
-#navbar .menu-btn .content {
-  position: relative;
+#navbar .hamburger .line-1 {
   width: 100%;
-  height: 100%;
+  height: 10px;
+  transition: all 0.8s;
 }
-#navbar .menu-btn .content .text {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) translateY(var(--translate-y));
-  transition: transform 150ms ease;
-  text-transform: uppercase;
-  font-family: "Titillium Web", cursive, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+#navbar .hamburger .line-2 {
+  width: 75%;
+  height: 10px;
+  transition: all 0.4s 0.8s;
 }
-#navbar .menu-btn .content .text:nth-child(1) {
-  --translate-y: 0;
-  color: #0a0f16;
+#navbar .hamburger .line-3 {
+  width: 50%;
+  height: 10px;
+  transition: all 0.4s;
 }
-#navbar .menu-btn .content .text:nth-child(2) {
-  --translate-y: 150%;
-  color: white;
+#navbar .hamburger.is-active .line-1 {
+  width: 100px;
+  transform: translate(18px, 2px) rotate(45deg);
+  transition: all 0.8s 0.4s;
+}
+#navbar .hamburger.is-active .line-2 {
+  width: 0;
+  height: 10px;
+  transition: all 0.4s;
+}
+#navbar .hamburger.is-active .line-3 {
+  width: 100px;
+  transform: translate(-66px, 65px) rotate(-45deg);
+  transition: all 0.8s 0.4s;
 }
 #navbar .nav {
   position: fixed;

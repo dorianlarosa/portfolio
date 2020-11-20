@@ -172,6 +172,7 @@ $navbar-height-mobile:68px;
         margin-top: 4rem;
         align-items: center;
 
+
         .col-element {
             display: flex;
             flex-direction: column;
@@ -179,6 +180,12 @@ $navbar-height-mobile:68px;
 
             @include media-breakpoint-up(lg) {
                 align-items: start;
+            }
+
+            &.col-element__text {
+                @include media-breakpoint-up(lg) {
+                    padding: 50px;
+                }
             }
 
             .pre-title {
@@ -206,6 +213,7 @@ $navbar-height-mobile:68px;
                 margin-top: 2rem;
 
                 @include media-breakpoint-up(lg) {
+                    width: 100%;
                     text-align: initial;
                 }
             }
@@ -286,13 +294,12 @@ $navbar-height-mobile:68px;
                 font-size: 30px;
                 -webkit-text-stroke: 1px $white;
                 transition: all .5s;
-                margin-left:initial;
-                margin-right:initial;
-                width:100%;
+                margin-left: initial;
+                margin-right: initial;
+                width: 100%;
 
                 @include media-breakpoint-up(sm) {
                     font-size: 45px;
-
                 }
 
                 @include media-breakpoint-up(md) {
