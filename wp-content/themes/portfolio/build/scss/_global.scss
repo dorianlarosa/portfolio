@@ -49,6 +49,7 @@ p {
     font-weight: 400;
     font-family: $font-family-text;
     margin: 0;
+    color:$primary;
 
     @include media-breakpoint-up(sm) {
         font-size: 16px;
@@ -79,11 +80,113 @@ textarea:focus {
     border: none;
     text-transform: uppercase;
     font-family: $font-family-title;
+    transition: all .5s;
 
-    @include hover-supported {
+    &.hover {
         color: white;
+        background-color: $primary;
     }
 }
+
+
+.wrapper-section,
+.content-navbar {
+    width: calc(100% - 80px);
+    margin: auto;
+    padding: 0 10px;
+
+    @include media-breakpoint-up(md) {
+        width: 66.6666666667%;
+    }
+}
+
+
+.text-white {
+    color:$white;
+} 
+
+.row {
+    margin:0;
+
+    &>* {
+        padding-left:0;
+        padding-right:0;
+
+    }
+}
+
+//////////////////
+// STROKE
+//////////////////
+
+.strokes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+
+    &.strokes__black {
+        div {
+            background: #101213;
+        }
+    }
+
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        background: #f0f0f0;
+    }
+
+    div:nth-child(1) {
+
+        left: 40px;
+
+        @include media-breakpoint-up(md) {
+            left: 16.6666666667%;
+
+        }
+    }
+
+    div:nth-child(2) {
+        left: 33.3333333333%;
+        display: none;
+
+        @include media-breakpoint-up(md) {
+            display: block;
+        }
+    }
+
+    div:nth-child(3) {
+        left: 50%;
+
+    }
+
+    div:nth-child(4) {
+        left: 66.6666666667%;
+        display: none;
+
+        @include media-breakpoint-up(md) {
+            display: block;
+
+        }
+    }
+
+    div:nth-child(5) {
+        right: 40px;
+        left: auto;
+
+        @include media-breakpoint-up(md) {
+            left: 83.3333333333%;
+            right: auto;
+        }
+    }
+}
+
 
 
 
@@ -148,7 +251,7 @@ textarea:focus {
         top: 0;
         left: 0;
         display: block;
-        background-image: url("images/view-project.png");
+        //background-image: url("images/view-project.png");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -196,25 +299,84 @@ textarea:focus {
 
 
 
+
+
+
 ////////////////
 // SECTION
 ////////////////
 
-.container-fluid {
-    .container {
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
 
-section:not(#header-section),
+section,
 footer {
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 110px;
+    padding-bottom: 110px;
 
     &.footer {
         padding-bottom: 0px;
+    }
 
+    &#header-section {
+        padding-top: 130px;
+        padding-bottom: 130px;
+        background: $primary;
+
+        @include media-breakpoint-up(md) {
+            padding-top: 160px;
+            padding-bottom: 160px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            padding-top: 200px;
+            padding-bottom: 200px;
+        }
+
+        .content-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+
+            @include media-breakpoint-up(lg) {
+                flex-direction: row;
+            }
+
+
+            .title-page {
+                color: $white;
+                font-family: $font-family-title;
+                font-size: 35px;
+                text-transform: uppercase;
+
+                @include media-breakpoint-up(sm) {
+                    font-size: 47px;
+                }
+
+                @include media-breakpoint-up(md) {
+                    font-size: 54px;
+                }
+
+                @include media-breakpoint-up(lg) {
+                    font-size: 70px;
+                }
+
+            }
+
+            .intro-page {
+                color: white;
+                width: 100%;
+                margin-top: 2rem;
+                text-align: center;
+
+                @include media-breakpoint-up(lg) {
+                    width: 50%;
+                    margin-top: 0;
+                    text-align: left;
+                }
+
+            }
+        }
     }
 
     // TITLE SECTION
@@ -228,6 +390,10 @@ footer {
         margin-right: auto;
         width: 73%;
 
+        &.title-white {
+            color: $white;
+        }
+
         // SPAN COLOR TITLE SECTION
         span {
             color: $action;
@@ -235,11 +401,13 @@ footer {
 
         @include media-breakpoint-up(sm) {
             font-size: 35px;
-            width: 70%;
+            width: 65%;
         }
 
         @include media-breakpoint-up(md) {
             font-size: 45px;
+            width: 85%;
+
         }
 
         @include media-breakpoint-up(lg) {
@@ -249,12 +417,12 @@ footer {
 
         @include media-breakpoint-up(xl) {
             font-size: 55px;
-            width: 60%;
+            width: 600px;
         }
     }
 
     h3 {
-        font-size: 23px;
+        font-size: 19px;
         text-transform: uppercase;
         font-family: $font-family-title;
         text-align: center;
@@ -269,17 +437,16 @@ footer {
             color: $action;
         }
 
-        @include media-breakpoint-up(md) {
-            width: 70%;
+        @include media-breakpoint-up(sm) {
+            font-size: 22px;
         }
-
         @include media-breakpoint-up(md) {
-            font-size: 27px;
-
+            width: 90%;
+            font-size: 28px;
         }
 
         @include media-breakpoint-up(lg) {
-            font-size: 29px;
+            font-size: 30px;
         }
 
         @include media-breakpoint-up(xl) {
@@ -290,43 +457,47 @@ footer {
 
     // TEXT INTRO SECTION
     .text-section {
-        margin-top: 30px;
+        margin-top: 3rem;
         text-align: center;
-        color: $primary;
         margin-left: auto;
         margin-right: auto;
-        width: 90%;
-
 
         @include media-breakpoint-up(sm) {
-            width: 80%;
+            width: 65%;
         }
 
         @include media-breakpoint-up(md) {
-            width: 70%;
+            width: 85%;
         }
 
         @include media-breakpoint-up(xl) {
-            width: 60%;
+            width: 70%;
         }
     }
 
-    .text {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
+    .container-texts {
+        display: flex;
+        flex-direction: column;
 
-        @include media-breakpoint-up(sm) {
-            width: 80%;
+        @include media-breakpoint-up(lg) {
+            flex-direction: row;
+            justify-content: space-around;
         }
 
-        @include media-breakpoint-up(md) {
-            width: 70%;
+        .container-text {
+            width: 100%;
+
+            @include media-breakpoint-up(lg) {
+                width: 45%;
+            }
+
+            .text-item {
+                &:nth-child(2) {
+                    margin-top: 3rem;
+                }
+            }
         }
 
-        @include media-breakpoint-up(xl) {
-            width: 60%;
-        }
     }
 
 }

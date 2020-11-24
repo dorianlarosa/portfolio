@@ -1,0 +1,121 @@
+#section-bienvenu {
+    background: $white;
+    padding-top: 0 !important;
+
+    .informations {
+        margin-top: 4rem;
+
+        .title-section {
+            width: 100%;
+            text-align: left;
+        }
+
+        .presentation-image {
+            width: 100%;
+            margin-top: 4rem;
+        }
+
+        .texts {
+            margin-top: 3rem;
+
+            @include media-breakpoint-up(lg) {
+                margin-top: 0;
+            }
+
+            p {
+                margin-top: 3rem;
+
+                &:first-of-type {
+                    margin-top: 0;
+                }
+            }
+
+            .signature {
+                width: 200px;
+                margin-left: auto;
+                display: block;
+                margin-top: 3rem;
+            }
+        }
+    }
+}
+
+#section-engagements {
+    background: $primary;
+
+    .list-engagements {
+        margin-top: 4rem;
+
+        .container-engagement-item {
+            margin-top: 1rem;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+
+            @include media-breakpoint-up(lg) {
+                margin-top: 0;
+            }
+        }
+
+        .engagement-item {
+            background: $white;
+            box-shadow: 0 0 20px #00000021;
+            padding: 2rem;
+            height: 100%;
+
+            .engagement-item__container-title {
+                display: flex;
+                align-items: center;
+
+                flex-direction: column;
+
+              
+
+                svg {
+                    font-size: 2.5rem;
+                    color: $action;
+
+                   
+                }
+
+                h3 {
+                    font-size: 20px;
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 1rem;
+                    @include media-breakpoint-up(xl) {
+                        font-size: 25px;
+                    }
+
+                  
+                }
+            }
+
+            .engagement-item__text {
+                margin-top: 1rem;
+                font-size: 15px;
+                text-align: center;
+
+             
+            }
+        }
+    }
+
+    .container-texts {
+        margin-top: 4rem;
+
+        p {
+            color: white;
+
+        }
+    }
+
+    .container-video {
+        margin-top:4rem;
+        video {
+            width:100%;
+
+        }
+    }
+}

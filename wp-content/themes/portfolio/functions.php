@@ -243,16 +243,12 @@ function verification_form()
   );
 
   // Message verification response
-  $not_human       = "not_human";
   $name_invalid    = "name_invalid";
   $email_invalid   = "email_invalid";
-  $project_invalid = "project_invalid";
-  $service_invalid = "service_invalid";
   $phone_invalid = "phone_invalid";
   $website_invalid = "website_invalid";
 
   $message_unsent  = "message_unsent";
-  $message_sent    = "message_sent";
 
   $missing_name    = "missing_name";
   $missing_email    = "missing_email";
@@ -300,6 +296,16 @@ function verification_form()
     if (!filter_var($website, FILTER_VALIDATE_URL)) {
       array_push($arrayResponse['errors'], $website_invalid);
     }
+  }
+
+
+  if (empty($arrayResponse['errors'])) {
+    $to = get_bloginfo('admin_email');
+    $subject = 'Contact Via le site web dorianlarosa.fr';
+    $body = 'The email body content';
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+
+    wp_mail($to, $subject, $body, $headers);
   }
 
 

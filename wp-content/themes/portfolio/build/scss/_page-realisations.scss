@@ -1,0 +1,22 @@
+#section-list-réalisations {
+    padding-top: 0;
+    background:$white;
+    .list-realisations {
+        margin-top: 0;
+
+        .item-projet {
+            &.hover {
+
+                .title-projet {
+                    color: $primary;
+                }
+            }
+
+            .title-projet {
+
+                -webkit-text-stroke: 1px $primary;
+
+            }
+        }
+    }
+}

@@ -1,3 +1,97 @@
+/////////////
+// SMOOTH SCROLL
+/////////////
+
+// var html = document.documentElement;
+// var body = document.body;
+
+// var scroller = {
+//   target: document.querySelector("#scroll-container"),
+//   ease: 0.05, // <= scroll speed
+//   endY: 0,
+//   y: 0,
+//   resizeRequest: 1,
+//   scrollRequest: 0,
+// };
+
+// var requestId = null;
+
+// TweenLite.set(scroller.target, {
+//   rotation: 0.01,
+//   force3D: true
+// });
+
+// window.addEventListener("load", onLoad);
+
+// function onLoad() {    
+//   updateScroller();  
+//   window.focus();
+//   window.addEventListener("resize", onResize);
+//   document.addEventListener("scroll", onScroll); 
+// }
+
+// function updateScroller() {
+
+//   var resized = scroller.resizeRequest > 0;
+
+//   if (resized) {    
+//     var height = scroller.target.clientHeight;
+//     body.style.height = height + "px";
+//     scroller.resizeRequest = 0;
+//   }
+
+//   var scrollY = window.pageYOffset || html.scrollTop || body.scrollTop || 0;
+
+//   scroller.endY = scrollY;
+//   scroller.y += (scrollY - scroller.y) * scroller.ease;
+
+//   if (Math.abs(scrollY - scroller.y) < 0.05 || resized) {
+//     scroller.y = scrollY;
+//     scroller.scrollRequest = 0;
+//   }
+
+//   TweenLite.set(scroller.target, { 
+//     y: -scroller.y 
+//   });
+
+//   requestId = scroller.scrollRequest > 0 ? requestAnimationFrame(updateScroller) : null;
+// }
+
+// function onScroll() {
+//   scroller.scrollRequest++;
+//   if (!requestId) {
+//     requestId = requestAnimationFrame(updateScroller);
+//   }
+// }
+
+// function onResize() {
+//   scroller.resizeRequest++;
+//   if (!requestId) {
+//     requestId = requestAnimationFrame(updateScroller);
+//   }
+// }
+
+const body = document.body,
+    scrollWrap = document.getElementsByClassName("scroll-container")[0],
+    height = scrollWrap.getBoundingClientRect().height - 1,
+    speed = 0.04;
+//height = 4784;
+
+var offset = 0;
+
+body.style.height = Math.floor(height) + "px";
+
+function smoothScroll() {
+    offset += (window.pageYOffset - offset) * speed;
+
+    var scroll = "translateY(-" + offset + "px) translateZ(0)";
+    scrollWrap.style.transform = scroll;
+
+    callScroll = requestAnimationFrame(smoothScroll);
+}
+
+smoothScroll();
+
 // BURGER MENU
 
 const {
@@ -9,7 +103,6 @@ const btn = document.querySelector('.hamburger');
 
 // Toggle class menu burger
 btn.addEventListener("click", () => {
-    console.log('yo;')
     if (btn.classList.contains('is-active')) {
         btn.classList.remove("is-active");
         hide();
@@ -28,44 +121,81 @@ function show() {
         pointerEvents: "none",
     });
 
-    tl.to(
-            ".nav", {
-                visibility: 'visible'
-            },
-            "-=.8").fromTo(
-            ".nav--transition-slide", {
-                scaleX: 0,
-                transformOrigin: "left center",
+    if (window.innerWidth < 1200) {
+        // Mobile version
+        tl.to(
+                ".nav", {
+                    display: 'block',
+                    visibility: 'visible'
+                },
+                "-=.8")
+            .fromTo(".parts-bg-nav div", {
+                width: "0%",
             }, {
-                duration: 0.5,
-                scaleX: 1,
-                ease: "Expo.inOut",
-            }
-        ).set(".nav__inner", {
-            pointerEvents: "all",
-        })
-        .fromTo(".nav--item-line", {
-            scaleX: 0,
-            transformOrigin: "left center",
+                duration: 1,
+                width: "17%",
+                ease: "power4.out",
+                stagger: 0.05,
+            }).fromTo(".marbles-container .marble-image", {
+                maxWidth: "0%",
+            }, {
+                duration: 0,
+                maxWidth: "45%",
+                ease: "power4.out"
+            }).set(".nav__inner", {
+                pointerEvents: "all",
+            }).fromTo(".nav--link", {
+                    translateY: "100%",
+                }, {
+                    duration: 2.60,
+                    translateY: "0%",
+                    ease: "elastic.inOut",
+                    stagger: 0.25,
+                },
+                "-=1.75"
+            ).set(".hamburger", {
+                pointerEvents: "all",
+            });
+    } else {
+        // Desktop version
+        tl.to(
+                ".nav", {
+                    display: 'block',
+                    visibility: 'visible'
+                },
+                "-=.8")
+            .fromTo(".parts-bg-nav div", {
+                width: "0%",
+            }, {
+                duration: 1,
+                width: "17%",
+                ease: "power4.out",
+                stagger: 0.05,
+            }).fromTo(".marbles-container .marble-image", {
+                    maxWidth: "0%",
+                }, {
+                    duration: 1,
+                    maxWidth: "45%",
+                    ease: "power4.out",
+                    stagger: 0.15,
+                },
+                "-=.5")
+            .set(".nav__inner", {
+                pointerEvents: "all",
+            }).fromTo(".nav--link", {
+                    translateY: "100%",
+                }, {
+                    duration: 2.60,
+                    translateY: "0%",
+                    ease: "elastic.inOut",
+                    stagger: 0.25,
+                },
+                "-=1.7"
+            ).set(".hamburger", {
+                pointerEvents: "all",
+            });
+    }
 
-        }, {
-            duration: 0.65,
-            scaleX: 1,
-            ease: "Expo.inOut",
-            stagger: 0.15,
-        })
-        .fromTo(".nav--link", {
-                translateY: "100%",
-            }, {
-                duration: 2.25,
-                translateY: "0%",
-                ease: "elastic.inOut",
-                stagger: 0.15,
-            },
-            "-=2"
-        ).set(".hamburger", {
-            pointerEvents: "all",
-        });
 }
 
 // Function hide menu
@@ -77,34 +207,76 @@ function hide() {
         pointerEvents: "none",
     });
 
-
-    tl.to(".nav--item-line", {
-        duration: 0.6,
-        scaleX: 0,
-        transformOrigin: 'right center',
-        ease: "Expo.inout",
-        stagger: -0.15
-    }).to(".nav--link", {
-            duration: 2.25,
-            translateY: "100%",
-            ease: "elastic.inOut",
-            stagger: -0.15,
-        },
-        "-=2").to(
-        ".nav--transition-slide", {
-            duration: .5,
-            transformOrigin: "right center",
+    if (window.innerWidth < 1200) {
+        // Mobile version
+        tl.to(".nav--item-line", {
+            duration: 0.6,
             scaleX: 0,
-            ease: "Expo.inOut",
-        },
-        "-=.8").set(".hamburger", {
-        pointerEvents: "all",
-    }).to(
-        ".nav", {
-            visibility: 'hidden'
-        }
-    );
-
+            transformOrigin: 'right center',
+            ease: "Expo.inout",
+            stagger: -0.15
+        }).to(".nav--link", {
+                duration: 2.60,
+                translateY: "100%",
+                ease: "elastic.inOut",
+                stagger: -0.25,
+            },
+            "-=2").fromTo(".marbles-container .marble-image", {
+            maxWidth: "45%",
+        }, {
+            duration: 0,
+            maxWidth: "0%",
+            ease: "power4.out"
+        }).to(".parts-bg-nav div", {
+                width: "0%",
+                duration: 1,
+                ease: "power4.in",
+                stagger: 0.05,
+            },
+            "-=1.5").to(
+            ".nav", {
+                visibility: 'hidden',
+                display: 'none'
+            }
+        ).set(".hamburger", {
+            pointerEvents: "all",
+        });
+    } else {
+        tl.to(".nav--item-line", {
+            duration: 0.6,
+            scaleX: 0,
+            transformOrigin: 'right center',
+            ease: "Expo.inout",
+            stagger: -0.15
+        }).to(".nav--link", {
+                duration: 2.60,
+                translateY: "100%",
+                ease: "elastic.inOut",
+                stagger: -0.25,
+            },
+            "-=2").fromTo(".marbles-container .marble-image", {
+                maxWidth: "45%",
+            }, {
+                duration: 1.5,
+                maxWidth: "0%",
+                ease: "power4.out",
+                stagger: 0.15,
+            },
+            "-=1").to(".parts-bg-nav div", {
+                width: "0%",
+                duration: 1,
+                ease: "power4.in",
+                stagger: 0.05,
+            },
+            "-=1").to(
+            ".nav", {
+                visibility: 'hidden',
+                display: 'none'
+            }
+        ).set(".hamburger", {
+            pointerEvents: "all",
+        });
+    }
 }
 
 
@@ -185,23 +357,10 @@ function removeCursorClick(el) {
     el.classList.remove("hover");
 }
 
-function addCursorBtn(el) {
-    cursor.classList.add("active-btn");
-    follower.classList.add("active-btn");
-    el.classList.add("hover");
-}
-
-function removeCursorBtn(el) {
-    cursor.classList.remove("active-btn");
-    follower.classList.remove("active-btn");
-    el.classList.remove("hover");
-}
-
 function addCursorProject(el) {
     cursor.classList.add("active-projet");
     follower.classList.add("active-projet");
     el.classList.add("hover");
-
 }
 
 function removeCursorProject(el) {
@@ -228,12 +387,12 @@ function mouseScroll(e) {
 
     // cursor project scroll
     [].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
-        var offsetTopProject = el.offsetTop - mouseOfWindowY;
+        // Item relative to container parent
+        var offsetTopProject = el.offsetTop + el.parentNode.parentNode.parentNode.offsetTop - mouseOfWindowY;
         var offsetBottomProject = offsetTopProject + el.offsetHeight;
 
         var offsetLeftProject = el.offsetLeft - mouseOfWindowX;
         var offsetRightProject = offsetLeftProject + el.offsetWidth;
-
 
         if (lastScrolledTop > offsetTopProject && lastScrolledTop < offsetBottomProject &&
             lastScrolledLeft > offsetLeftProject && lastScrolledLeft < offsetRightProject) {
@@ -245,8 +404,8 @@ function mouseScroll(e) {
     });
 
     // cursor btn scroll
-    [].forEach.call(document.querySelectorAll('.btn'), function (el) {
-        var offsetTopProject = el.offsetTop - mouseOfWindowY;
+    [].forEach.call(document.querySelectorAll('.click'), function (el) {
+        var offsetTopProject = el.offsetTop + el.parentNode.parentNode.parentNode.parentNode.offsetTop - mouseOfWindowY;
         var offsetBottomProject = offsetTopProject + el.offsetHeight;
 
         var offsetLeftProject = el.offsetLeft - mouseOfWindowX;
@@ -255,10 +414,11 @@ function mouseScroll(e) {
 
         if (lastScrolledTop > offsetTopProject && lastScrolledTop < offsetBottomProject &&
             lastScrolledLeft > offsetLeftProject && lastScrolledLeft < offsetRightProject) {
-            addCursorBtn(el);
+            addCursorClick(el);
+
             shouldSkip = true;
         } else if (!shouldSkip) {
-            removeCursorBtn(el);
+            removeCursorClick(el);
         }
     });
 }
@@ -280,19 +440,6 @@ function mouseScroll(e) {
     })
 });
 
-// Change cursor when mouse enter in btn item
-[].forEach.call(document.querySelectorAll('.btn'), function (el) {
-    el.addEventListener('mouseenter', function () {
-        addCursorBtn(el);
-    })
-});
-
-// Change cursor when mouse enter in btn item
-[].forEach.call(document.querySelectorAll('.btn'), function (el) {
-    el.addEventListener('mouseleave', function () {
-        removeCursorBtn(el);
-    })
-});
 
 // Change cursor when mouse enter in project
 [].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
@@ -317,9 +464,34 @@ function mouseScroll(e) {
 // UPDATE PAGE STEP FORM
 
 let formContact = document.getElementById("form-contact");
+let containerNameField = document.getElementById('container-name-field');
+let containerEmailField = document.getElementById('container-email-field');
+let containerProjectField = document.getElementById('container-project-field');
+let containerServiceField = document.getElementById('container-service-field');
+let containerPhoneField = document.getElementById('container-phone-field');
+let containerWebsiteField = document.getElementById('container-website-field');
+
+let nameInput = document.getElementById('name-field-input');
+let emailInput = document.getElementById('email-field-input');
+let projectInput = document.getElementById('project-field-input');
+let serviceInput = document.getElementById('service-field-input');
+let phoneInput = document.getElementById('phone-field-input');
+let websiteInput = document.getElementById('website-field-input');
+
+let arrayInput = [nameInput, emailInput, projectInput, serviceInput, phoneInput, websiteInput];
+
+let containerNameFieldError = document.getElementById('error-name-field-container');
+let containerEmailFieldError = document.getElementById('error-email-field-container');
+let containerProjectFieldError = document.getElementById('error-project-field-container');
+let containerServiceFieldError = document.getElementById('error-service-field-container');
+let containerPhoneFieldError = document.getElementById('error-phone-field-container');
+let containerWebsiteFieldError = document.getElementById('error-website-field-container');
+
+let containerSuccesformSend = document.getElementById('response-email-send');
+
+const btnSendForm = document.querySelector('#send-btn-form');
 
 function updatePageform(pageNumber) {
-
     formContact.classList.remove('page-1', 'page-2', 'page-3', 'page-4');
     formContact.classList.add('page-' + pageNumber);
 }
@@ -353,30 +525,17 @@ function updatePageform(pageNumber) {
     })
 });
 
+// Change cursor when mouse leave in project
+[].forEach.call(document.querySelectorAll('.form-field'), function (el) {
+    el.addEventListener('input', function () {
+        el.parentNode.classList.remove("container-field-error");
+    })
+});
+
 
 // SEND FORM AJAX
 
-
-
-
-// EVENT BTN SEND FORM
-
-let containerNameField = document.getElementById('container-name-field');
-let containerEmailField = document.getElementById('container-email-field');
-let containerProjectField = document.getElementById('container-project-field');
-let containerServiceField = document.getElementById('container-service-field');
-let containerPhoneField = document.getElementById('container-phone-field');
-let containerWebsiteField = document.getElementById('container-website-field');
-
-let containerNameFieldError = document.getElementById('error-name-field-container');
-let containerEmailFieldError = document.getElementById('error-email-field-container');
-let containerProjectFieldError = document.getElementById('error-project-field-container');
-let containerServiceFieldError = document.getElementById('error-service-field-container');
-let containerPhoneFieldError = document.getElementById('error-phone-field-container');
-let containerWebsiteFieldError = document.getElementById('error-website-field-container');
-
-const btnSendForm = document.querySelector('#send-btn-form');
-
+// event btn send form
 btnSendForm.addEventListener("click", () => {
 
     var requestForm = new XMLHttpRequest();
@@ -390,33 +549,73 @@ btnSendForm.addEventListener("click", () => {
 
             if (response.status == 'error') {
                 let errors = response.errors;
-
                 console.log(errors);
+
+                let pageToRedirect;
 
                 if (Object.values(errors).indexOf("missing_name") > -1) {
                     containerNameField.classList.add('container-field-error');
                     containerNameFieldError.innerHTML = "Un nom est nécéssaire";
+                    pageToRedirect = 1;
+                } else if (Object.values(errors).indexOf("name_invalid") > -1) {
+                    containerNameField.classList.add('container-field-error');
+                    containerNameFieldError.innerHTML = "Le nom n'est pas valide";
+                    pageToRedirect = 1;
+
+                } else {
+                    containerNameField.classList.remove('container-field-error');
                 }
+
                 if (Object.values(errors).indexOf("missing_email") > -1) {
                     containerEmailField.classList.add('container-field-error');
                     containerEmailFieldError.innerHTML = "Une adresse email est nécéssaire";
+                    pageToRedirect = 1;
+
+                } else if (Object.values(errors).indexOf("email_invalid") > -1) {
+                    containerEmailField.classList.add('container-field-error');
+                    containerEmailFieldError.innerHTML = "L'adresse email n'est pas valide";
+                    pageToRedirect = 1;
+
+                } else {
+                    containerEmailField.classList.remove('container-field-error');
                 }
+
                 if (Object.values(errors).indexOf("missing_project") > -1) {
                     containerProjectField.classList.add('container-field-error');
                     containerProjectFieldError.innerHTML = "Une description du projet est nécéssaire";
+                    if (!pageToRedirect) pageToRedirect = 2;
+                } else {
+                    containerProjectField.classList.remove('container-field-error');
                 }
+
                 if (Object.values(errors).indexOf("missing_service") > -1) {
                     containerServiceField.classList.add('container-field-error');
                     containerServiceFieldError.innerHTML = "Une description du service est nécéssaire";
+                    if (!pageToRedirect) pageToRedirect = 3;
+
+                } else {
+                    containerServiceField.classList.remove('container-field-error');
                 }
+
                 if (Object.values(errors).indexOf("missing_phone") > -1) {
                     containerPhoneField.classList.add('container-field-error');
                     containerPhoneFieldError.innerHTML = "Un numéro de téléphone est nécéssaire";
+                    if (!pageToRedirect) pageToRedirect = 4;
+
+                } else if (Object.values(errors).indexOf("phone_invalid") > -1) {
+                    containerPhoneField.classList.add('container-field-error');
+                    containerPhoneFieldError.innerHTML = "Le numéro de téléphone n'est pas valide";
+                    if (!pageToRedirect) pageToRedirect = 4;
+                } else {
+                    containerPhoneField.classList.remove('container-field-error');
                 }
 
+                updatePageform(pageToRedirect);
 
             } else if (response.status == 'succes') {
-                console.log('Envoi réussi');
+                containerSuccesformSend.classList.add('show');
+                formContact.reset();
+                updatePageform(1);
             }
 
         } else {
@@ -428,13 +627,12 @@ btnSendForm.addEventListener("click", () => {
         console.log('onerror');
     };
 
-
-    let dataNameInput = document.getElementById('name-field-input').value;
-    let dataEmailInput = document.getElementById('email-field-input').value;
-    let dataProjectInput = document.getElementById('project-field-input').value;
-    let dataServiceInput = document.getElementById('service-field-input').value;
-    let dataPhoneInput = document.getElementById('phone-field-input').value;
-    let dataWebsiteInput = document.getElementById('website-field-input').value;
+    let dataNameInput = nameInput.value;
+    let dataEmailInput = emailInput.value;
+    let dataProjectInput = projectInput.value;
+    let dataServiceInput = serviceInput.value;
+    let dataPhoneInput = phoneInput.value;
+    let dataWebsiteInput = websiteInput.value;
 
     requestForm.send('action=verification_form&name=' + dataNameInput + '&email=' + dataEmailInput + '&project=' + dataProjectInput + '&service=' + dataServiceInput + '&phone=' + dataPhoneInput + '&website=' + dataWebsiteInput);
 })

@@ -1,0 +1,97 @@
+#section-list-services {
+    padding-top: 0 !important;
+    background:$white;
+    
+
+    .text {
+        text-align: center;
+        margin-top: 6rem;
+    }
+
+    .list-services {
+        margin-top: 5rem;
+
+        .item-service {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 4rem;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+
+
+
+            @include media-breakpoint-up(lg) {
+                flex-direction: row;
+                align-items: start;
+                margin-top: 5rem;
+
+                &:nth-of-type(2) {
+                    margin-top: 0;
+                }
+
+                &:nth-child(odd) {
+                    padding-right: 40px;
+                }
+
+                &:nth-child(even) {
+                    padding-left: 40px;
+                }
+            }
+
+            .item-service__container-icon {
+                .wrapper-icon {
+                    background: $action;
+                    border-radius: 100%;
+                    position: relative;
+                    height: 50px;
+                    width: 50px;
+
+                    svg {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        font-size: 1.7rem;
+                        color: white;
+                    }
+                }
+
+            }
+
+            .item-service__container-service {
+                margin-top: 1rem;
+
+                @include media-breakpoint-up(lg) {
+                    margin-left: 2rem;
+                    margin-top: 0rem;
+
+                }
+
+                .item-service__title-service {
+                    font-size: 27px;
+                    width: 100%;
+
+                    @include media-breakpoint-up(lg) {
+                        text-align: left;
+                        margin-left: 0;
+                        margin-right: 0;
+
+                    }
+                }
+
+                .item-service__text-service {
+                    text-align: center;
+                    margin-top: 1rem;
+                    font-size: 15px;
+
+                    @include media-breakpoint-up(lg) {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,9 +1,27 @@
-<section id="form-section" class="container-fluid">
-    <div class="container">
+<section id="form-section">
+    <div class="strokes">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="wrapper-section">
         <h2>Vous avez un <span>projets</span> ?</h2>
         <p class="text-section">Laissez-nous vos coordonnées ci-dessous et nous vous recontacterons dans la journée pour discuter de votre projet.</p>
         <div class="container-form">
+            <!-- POPUP EMAILS -->
+            <div id="response-email-send">
+                <div class="content-response">
+                    <p class="title-succes">Votre demande de projet à été traité avec <span>succès</span> !</p>
+                    <p class="text-succes">Nous vous recontacterons très prochainement !</p>
+                </div>
+
+            </div>
+
             <form id="form-contact" class="form page-1" action="">
+
+
                 <div class="page-form page-form__1">
                     <div class="page-form__content">
                         <p class="page-form__title">
@@ -12,15 +30,13 @@
                         <hr>
                         <div class="container-inputs">
                             <div id="container-name-field" class="container-field">
-                                <input type="text" name="" tabindex="-1" id="name-field-input" placeholder="Nom">
+                                <input class="form-field" type="text" name="" tabindex="-1" id="name-field-input" placeholder="Nom">
                                 <span id="error-name-field-container" class="error-field-text"></span>
                             </div>
                             <div id="container-email-field" class="container-field">
-                                <input type="email" name="" tabindex="-1" id="email-field-input" placeholder="Email">
+                                <input class="form-field" type="email" name="" tabindex="-1" id="email-field-input" placeholder="Email">
                                 <span id="error-email-field-container" class="error-field-text"></span>
-
                             </div>
-
                         </div>
 
 
@@ -30,7 +46,7 @@
                             1/4
                         </span>
 
-                        <div class="btn btn-next-page-form btn-next-page-form__page-1">
+                        <div class="btn btn-next-page-form btn-next-page-form__page-1 click">
                             Suivant
                         </div>
                     </div>
@@ -44,9 +60,9 @@
                         <hr>
                         <div class="container-inputs">
                             <div id="container-project-field" class="container-field">
-                                <textarea name="" tabindex="-1" id="project-field-input" cols="30" rows="4" placeholder="Parlez-nous un peu de votre projet.. Votre entreprise... Vos problèmatiques..."></textarea>
+                                <textarea class="form-field" name="" tabindex="-1" id="project-field-input" cols="30" rows="4" placeholder="Parlez-nous un peu de votre projet.. Votre entreprise... Vos problèmatiques..."></textarea>
                                 <span id="error-project-field-container" class="error-field-text"></span>
-                            
+
                             </div>
                         </div>
 
@@ -63,7 +79,7 @@
                             <span>Précedent</span>
                         </div>
 
-                        <div class="btn btn-next-page-form btn-next-page-form__page-2">
+                        <div class="btn btn-next-page-form btn-next-page-form__page-2 click">
                             Suivant
                         </div>
                     </div>
@@ -76,9 +92,9 @@
                         <hr>
                         <div class="container-inputs">
                             <div id="container-service-field" class="container-field">
-                                <textarea name="" tabindex="-1" id="service-field-input" cols="30" rows="4" placeholder="Design, Création de site, Refonte de site existant..."></textarea>
+                                <textarea class="form-field" name="" tabindex="-1" id="service-field-input" cols="30" rows="4" placeholder="Design, Création de site, Refonte de site existant..."></textarea>
                                 <span id="error-service-field-container" class="error-field-text"></span>
-                            
+
                             </div>
                         </div>
 
@@ -96,7 +112,7 @@
                             <span>Précedent</span>
                         </div>
 
-                        <div class="btn btn-next-page-form btn-next-page-form__page-3">
+                        <div class="btn btn-next-page-form btn-next-page-form__page-3 click">
                             Suivant
                         </div>
                     </div>
@@ -109,13 +125,13 @@
                         <hr>
                         <div class="container-inputs">
                             <div id="container-phone-field" class="container-field">
-                                <input type="tel" name="" tabindex="-1" id="phone-field-input" placeholder="Numéro de téléphone">
+                                <input class="form-field" type="tel" name="" tabindex="-1" id="phone-field-input" placeholder="Numéro de téléphone">
                                 <span id="error-phone-field-container" class="error-field-text"></span>
-                            
+
                             </div>
 
                             <div id="container-website-field" class="container-field">
-                                <input type="url" name="" tabindex="-1" id="website-field-input" placeholder="Lien de votre site internet (facultatif)">
+                                <input class="form-field" type="url" name="" tabindex="-1" id="website-field-input" placeholder="Lien de votre site internet (facultatif)">
                                 <span id="error-website-field-container" class="error-field-text"></span>
                             </div>
                         </div>
@@ -134,7 +150,7 @@
                             <span>Précedent</span>
                         </div>
 
-                        <div id="send-btn-form" class="btn btn-next-page-form btn-next-page-form__page-4">
+                        <div id="send-btn-form" class="btn btn-next-page-form btn-next-page-form__page-4 click">
                             Envoyer
                         </div>
                     </div>

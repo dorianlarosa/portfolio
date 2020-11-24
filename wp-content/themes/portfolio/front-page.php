@@ -2,16 +2,23 @@
 
 
 
-<section id="header-section" class="container-fluid">
-    <div class="container-big-image-header">
-        <img class="big-image-header" src="<?= get_template_directory_uri() ?>/images/big_image_header.jpg" alt="">
+<section id="header-home-section">
+    <div class="strokes">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
-    <div class="container-little-image-header">
-        <img class="little-image-header" src="<?= get_template_directory_uri() ?>/images/little_image_header.jpg" alt="">
+    <div class="marbre">
+
     </div>
-    <div class="container">
+    <div class="wrapper-section">
         <div class="content-header">
-            <h1 class="title-page">Création <span>de sites</span> qui font la <span>difference</span></h1>
+            <div class="pre-title">
+                Dorian LA ROSA - Développeur
+            </div>
+            <h1 class="title-page">J'accompagne les entreprises à développer <span>des sites</span> qui font la <span>difference</span></h1>
             <span class="adjectifs">
                 Créatif<br>
                 Freelance<br>
@@ -22,97 +29,105 @@
     </div>
 </section>
 
-<section id="a-propos-section" class="container-fluid">
-    <div class="container">
+<section id="section-services">
+    <div class="strokes strokes__black">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="wrapper-section">
+        <h2 class="title-white">Construire un site qui à de <span>l'impact</span></h2>
+        <p class="text-section text-white">Il est primordial de se démarquer des autres sites web, c'est la raison pour laquelle j'accompagne les marques les plus ambitieuse dans leurs développement</p>
 
-        <h2>Construire un site qui à de <span>l'impact</span></h2>
-        <p class="text-section">Il est primordial de se démarquer des autres sites web, c'est la raison pour laquelle j'accompagne les marques les plus ambitieuse dans leurs développement</p>
-        <div class="row element element-1">
 
-            <div class="col-12 col-lg-6 order-lg-1 col-element col-element__text">
-                <p class="pre-title">Découvrez mes engagements</p>
-                <h3>En savoir d'avantage sur moi</h3>
-                <p class="text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat harum veritatis, pariatur minima dolor doloribus, numquam facilis ducimus unde vero exercitationem!</p>
-                <a href="#" class="link-btn btn">
-                    Découvrir
-                </a>
+        <div class="row">
+            <div class="col-12 col-lg-6 marble-col">
+
+                <div class="marble marble-1">
+
+                </div>
+
+                <div class="marble marble-2">
+
+                </div>
             </div>
-
-            <div class="col-12 col-lg-6 col-element">
-                <img class="mockup-mac" src="<?= get_template_directory_uri() ?>/images/mockup_mac.png" alt="">
+            <div class="col-12 col-lg-6 services-col">
+                <ul>
+                    <li class="service-item">
+                        <span class="number-service">01</span>
+                        Conception et suivi de projet
+                    </li>
+                    <li class="service-item">
+                        <span class="number-service">02</span>
+                        Graphisme et identitée visuelle
+                    </li>
+                    <li class="service-item">
+                        <span class="number-service">03</span>
+                        Web design et ergonomie
+                    </li>
+                    <li class="service-item">
+                        <span class="number-service">04</span>
+                        Développement et réferencement
+                    </li>
+                    <li class="service-item">
+                        <span class="number-service">05</span>
+                        Refonte d'un site existant
+                    </li>
+                    <li class="service-item">
+                        <span class="number-service">06</span>
+                        Suivi de projet et maintenance
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <div class="row element element-2">
+    </div>
+</section>
+
+<section id="section-a-propos">
+<div class="strokes">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="wrapper-section">
+
+        <h2>Un artisan du <span>web</span></h2>
+        <div class="row">
 
             <div class="col-12 col-lg-6 col-element col-element__text">
                 <p class="pre-title">Découvrez mes engagements</p>
                 <h3>En savoir d'avantage sur moi</h3>
-                <p class="text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat harum veritatis, pariatur minima dolor doloribus, numquam facilis ducimus unde vero exercitationem!</p>
-                <a href="#" class="link-btn btn">
+                <p class="text-section"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat harum veritatis, pariatur minima dolor doloribus, numquam facilis ducimus unde vero exercitationem!</p>
+                <a href="#" class="link-btn btn click">
                     Découvrir
                 </a>
             </div>
 
-            <div class="col-12 col-lg-6 col-element">
-                <img class="mockup-mac" src="<?= get_template_directory_uri() ?>/images/mockup_mac.png" alt="">
+            <div class="col-12 col-lg-6 col-element col-element__image">
+                <img class="portrait" src="<?= get_template_directory_uri() ?>/images/portrait.png" alt="">
             </div>
         </div>
     </div>
 
 </section>
 
-<section id="section-projets" class="container-fluid">
-    <div class="container">
+<section id="section-realisation">
+    <div class="wrapper-section">
+    <div class="strokes strokes__black">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+        <h2 class="title-white">Dernières <span>réalisations</span></h2>
 
-        <h2>Découvrez quelques <span>projets</span> récent</h2>
-        <p class="text-section">Il est primordial de se démarquer des autres sites web, c'est la raison pour laquelle j'accompagne les marques les plus ambitieuse dans leurs développement</p>
-
-        <div class="content">
-            <a href="#">
-                <div class="item-projet">
-                    <div class="item-imgwrap">
-                        <img class="item-img" src="<?= get_template_directory_uri() ?>/images/projets/vcn.jpg)" alt="">
-
-                    </div>
-                    <h3 class="title-projet">Vous C'est Nous</h3>
-                    <p class="description-projet">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia accusantium veniam vel a maiores quidem repellat
-                    </p>
-                </div>
-            </a>
-            <div class="item-projet">
-                <div class="item-imgwrap">
-                    <img class="item-img" src="<?= get_template_directory_uri() ?>/images/projets/soundpods.jpg)" alt="">
-                </div>
-                <h3 class="title-projet">MySoundPods</h3>
-
-                <p class="description-projet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa est voluptatibus quod aperiam. </p>
-            </div>
-            <div class="item-projet">
-                <div class="item-imgwrap">
-                    <img class="item-img" src="<?= get_template_directory_uri() ?>/images/projets/egs.jpg)" alt="">
-                </div>
-                <h3 class="title-projet">EGS Securité</h3>
-
-                <p class="description-projet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet blanditiis, hic sequi asperiores necessitatibus</p>
-            </div>
-            <div class="item-projet">
-                <div class="item-imgwrap">
-                    <img class="item-img" src="<?= get_template_directory_uri() ?>/images/projets/real.jpg)" alt="">
-                </div>
-                <h3 class="title-projet">Real Madrid</h3>
-
-                <p class="description-projet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet blanditiis, hic sequi asperiores necessitatibus</p>
-            </div>
-            <div class="item-projet">
-                <div class="item-imgwrap">
-                    <img class="item-img" src="<?= get_template_directory_uri() ?>/images/projets/bornes.jpg)" alt="">
-                </div>
-                <h3 class="title-projet">MapElectric</h3>
-
-                <p class="description-projet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet blanditiis, hic sequi asperiores necessitatibus</p>
-            </div>
-        </div>
+        <?php get_template_part('parts/list-realisations'); ?>
     </div>
 
 </section>

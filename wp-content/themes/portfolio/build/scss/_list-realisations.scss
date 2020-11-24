@@ -1,0 +1,117 @@
+.list-realisations {
+    margin-top: 4rem;
+    margin-left: -10px;
+    margin-right: -10px;
+
+    .item-projet {
+        width: 100%;
+        margin-top: 4rem;
+        display: block;
+
+        @include media-breakpoint-up(sm) {
+            margin-top: 6rem;
+        }
+
+        @include media-breakpoint-up(md) {
+            margin-top: 8rem;
+        }
+
+        @include media-breakpoint-up(lg) {
+            margin-top: 10rem;
+
+        }
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+
+        @include media-breakpoint-up(sm) {
+            width: 80%;
+        }
+
+        @include media-breakpoint-up(md) {
+            width: 90%;
+        }
+
+        @include media-breakpoint-up(lg) {
+            width: 80%;
+        }
+
+        &:nth-child(2n) {
+            margin-left: auto;
+        }
+
+        &.hover {
+            .number-projet {
+                color: $white;
+                -webkit-text-stroke: 1px transparent;
+            }
+
+            .item-imgwrap {
+
+                img {
+                    transform: translateX(-1.75rem);
+                    transform: scale(1.2);
+                    -webkit-filter: grayscale(100%);
+                    /* Safari 6.0 - 9.0 */
+                    filter: grayscale(100%);
+                }
+
+            }
+
+            .title-projet {
+                color: $white;
+                -webkit-text-stroke: 1px transparent;
+
+            }
+        }
+
+        .number-projet {
+            color: transparent;
+            font-size: 50px;
+            -webkit-text-stroke: 1px $white;
+            font-family: $font-family-title;
+            transition: all .5s;
+
+            @include media-breakpoint-up(sm) {
+                font-size: 70px;
+            }
+
+            @include media-breakpoint-up(lg) {
+                font-size: 80px;
+            }
+        }
+
+        .item-imgwrap {
+            overflow: hidden;
+
+            .item-img {
+                width: 100%;
+                height: auto;
+                transition: all 2s cubic-bezier(0.25, 1, 0.3, 1);
+            }
+
+        }
+
+        .title-projet {
+            text-align: left;
+            margin-top: 20px;
+            color: transparent;
+            font-size: 27px;
+            -webkit-text-stroke: 1px $white;
+            transition: all .5s;
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%;
+
+            @include media-breakpoint-up(sm) {
+                font-size: 45px;
+            }
+
+            @include media-breakpoint-up(md) {
+                font-size: 60px;
+
+            }
+        }
+    }
+}
