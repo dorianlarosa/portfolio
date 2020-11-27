@@ -1,13 +1,25 @@
 #section-bienvenu {
     background: $white;
-    padding-top: 0 !important;
+    position: relative;
+    z-index: 1;
 
     .informations {
-        margin-top: 4rem;
 
         .title-section {
             width: 100%;
             text-align: left;
+
+            span {
+                display: block;
+            }
+
+            @include media-breakpoint-up(lg) {
+                font-size: 32px;
+            }
+
+            @include media-breakpoint-up(xl) {
+                font-size: 39px;
+            }
         }
 
         .presentation-image {
@@ -42,9 +54,22 @@
 
 #section-engagements {
     background: $primary;
+    position: relative;
+    z-index: 1;
 
     .list-engagements {
         margin-top: 4rem;
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+
+            &>* {
+                padding-left: 5px;
+                padding-right: 5px;
+
+            }
+        }
 
         .container-engagement-item {
             margin-top: 1rem;
@@ -53,7 +78,7 @@
                 margin-top: 0;
             }
 
-            @include media-breakpoint-up(lg) {
+            @include media-breakpoint-up(xl) {
                 margin-top: 0;
             }
         }
@@ -70,13 +95,13 @@
 
                 flex-direction: column;
 
-              
+
 
                 svg {
                     font-size: 2.5rem;
                     color: $action;
 
-                   
+
                 }
 
                 h3 {
@@ -84,11 +109,12 @@
                     width: 100%;
                     text-align: center;
                     margin-top: 1rem;
+
                     @include media-breakpoint-up(xl) {
                         font-size: 25px;
                     }
 
-                  
+
                 }
             }
 
@@ -97,7 +123,7 @@
                 font-size: 15px;
                 text-align: center;
 
-             
+
             }
         }
     }
@@ -112,9 +138,10 @@
     }
 
     .container-video {
-        margin-top:4rem;
+        margin-top: 4rem;
+
         video {
-            width:100%;
+            width: 100%;
 
         }
     }

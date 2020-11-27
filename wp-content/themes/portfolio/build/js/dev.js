@@ -2,95 +2,121 @@
 // SMOOTH SCROLL
 /////////////
 
-// var html = document.documentElement;
-// var body = document.body;
 
-// var scroller = {
-//   target: document.querySelector("#scroll-container"),
-//   ease: 0.05, // <= scroll speed
-//   endY: 0,
-//   y: 0,
-//   resizeRequest: 1,
-//   scrollRequest: 0,
-// };
+function getOS() {
+    var userAgent = window.navigator.userAgent,
+        platform = window.navigator.platform,
+        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+        iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+        os = null;
 
-// var requestId = null;
+    if (macosPlatforms.indexOf(platform) !== -1) {
+        os = 'Mac OS';
+    } else if (iosPlatforms.indexOf(platform) !== -1) {
+        os = 'iOS';
+    } else if (windowsPlatforms.indexOf(platform) !== -1) {
+        os = 'Windows';
+    } else if (/Android/.test(userAgent)) {
+        os = 'Android';
+    } else if (!os && /Linux/.test(platform)) {
+        os = 'Linux';
+    }
 
-// TweenLite.set(scroller.target, {
-//   rotation: 0.01,
-//   force3D: true
-// });
-
-// window.addEventListener("load", onLoad);
-
-// function onLoad() {    
-//   updateScroller();  
-//   window.focus();
-//   window.addEventListener("resize", onResize);
-//   document.addEventListener("scroll", onScroll); 
-// }
-
-// function updateScroller() {
-
-//   var resized = scroller.resizeRequest > 0;
-
-//   if (resized) {    
-//     var height = scroller.target.clientHeight;
-//     body.style.height = height + "px";
-//     scroller.resizeRequest = 0;
-//   }
-
-//   var scrollY = window.pageYOffset || html.scrollTop || body.scrollTop || 0;
-
-//   scroller.endY = scrollY;
-//   scroller.y += (scrollY - scroller.y) * scroller.ease;
-
-//   if (Math.abs(scrollY - scroller.y) < 0.05 || resized) {
-//     scroller.y = scrollY;
-//     scroller.scrollRequest = 0;
-//   }
-
-//   TweenLite.set(scroller.target, { 
-//     y: -scroller.y 
-//   });
-
-//   requestId = scroller.scrollRequest > 0 ? requestAnimationFrame(updateScroller) : null;
-// }
-
-// function onScroll() {
-//   scroller.scrollRequest++;
-//   if (!requestId) {
-//     requestId = requestAnimationFrame(updateScroller);
-//   }
-// }
-
-// function onResize() {
-//   scroller.resizeRequest++;
-//   if (!requestId) {
-//     requestId = requestAnimationFrame(updateScroller);
-//   }
-// }
-
-const body = document.body,
-    scrollWrap = document.getElementsByClassName("scroll-container")[0],
-    height = scrollWrap.getBoundingClientRect().height - 1,
-    speed = 0.04;
-//height = 4784;
-
-var offset = 0;
-
-body.style.height = Math.floor(height) + "px";
-
-function smoothScroll() {
-    offset += (window.pageYOffset - offset) * speed;
-
-    var scroll = "translateY(-" + offset + "px) translateZ(0)";
-    scrollWrap.style.transform = scroll;
-
-    callScroll = requestAnimationFrame(smoothScroll);
+    return os;
 }
 
-smoothScroll();
+let scrollContainer = document.querySelector("#scroll-container");
+let mainContainer = document.querySelector("#main");
+var html = document.documentElement;
+var body = document.body;
+
+if (getOS() != "Mac OS" && getOS() != "iOS") {
+
+
+
+    var scroller = {
+        target: scrollContainer,
+        ease: .05, // <= scroll speed
+        endY: 0,
+        y: 0,
+        resizeRequest: 1,
+        scrollRequest: 0,
+    };
+
+    var requestId = null;
+
+    TweenLite.set(scroller.target, {
+        rotation: 0.01,
+        force3D: true
+    });
+
+    window.addEventListener("load", onLoad);
+
+    function onLoad() {
+        updateScroller();
+        window.focus();
+        window.addEventListener("resize", onResize);
+        document.addEventListener("scroll", onScroll);
+    }
+
+    function updateScroller() {
+
+        var resized = scroller.resizeRequest > 0;
+        if (resized) {
+            setTimeout(function () {
+                scroller.resizeRequest = 0;
+
+                var height = scroller.target.clientHeight;
+                body.style.height = height + "px";
+
+                // Double set style height because the first set is not good value
+                var height = scroller.target.clientHeight;
+                body.style.height = height + "px";
+            }, 400);
+
+        }
+
+        var scrollY = window.pageYOffset || html.scrollTop || body.scrollTop || 0;
+
+        scroller.endY = scrollY;
+        scroller.y += (scrollY - scroller.y) * scroller.ease;
+
+        if (Math.abs(scrollY - scroller.y) < 0.05 || resized) {
+            scroller.y = scrollY;
+            scroller.scrollRequest = 0;
+        }
+
+        TweenLite.set(scroller.target, {
+            y: -scroller.y
+        });
+
+        requestId = scroller.scrollRequest > 0 ? requestAnimationFrame(updateScroller) : null;
+
+    }
+
+    function onScroll() {
+
+        scroller.scrollRequest++;
+        if (!requestId) {
+            requestId = requestAnimationFrame(updateScroller);
+        }
+
+        //console.log(scroller.scrollRequest);
+    }
+
+    function onResize() {
+
+        scroller.resizeRequest++;
+        if (!requestId) {
+            requestId = requestAnimationFrame(updateScroller);
+        }
+    }
+} else {
+    scrollContainer.style.position = 'initial';
+    mainContainer.style.position = 'relative';
+}
+
 
 // BURGER MENU
 
@@ -101,183 +127,137 @@ const {
 const btn = document.querySelector('.hamburger');
 
 
+
+let tlTransitionMenu = new TimelineMax({
+    paused: true,
+    reversed: true
+});
+
+
+if (window.innerWidth < 1200) {
+    // Mobile version
+    tlTransitionMenu.to(
+            ".nav", {
+                display: 'block',
+                visibility: 'visible',
+                duration: 0,
+
+            })
+        .to(".parts-bg-nav div", {
+            duration: 1,
+            width: "17%",
+            ease: "power4.out",
+            stagger: 0.05,
+        })
+        .to(".marbles-container .marble-image", {
+            duration: 0,
+            maxWidth: "45%",
+            ease: "power4.out"
+        })
+        .to(".nav--link", {
+                duration: 2.60,
+                translateY: "0%",
+                ease: "elastic.inOut",
+                stagger: 0.25,
+            },
+            "-=+1.7"
+        );
+} else {
+    // Desktop version
+    tlTransitionMenu.to(
+            ".nav", {
+                display: 'block',
+                visibility: 'visible',
+                duration: 0
+            }
+        )
+        .to(".parts-bg-nav div", {
+            duration: 1,
+            width: "17%",
+            ease: "power4.out",
+            stagger: 0.05,
+        })
+        .to(".marbles-container .marble-image", {
+                duration: 1,
+                maxWidth: "45%",
+                ease: "power4.out",
+                stagger: 0.15,
+            },
+            "-=.7")
+        .to(".nav--link", {
+                duration: 1,
+                translateY: "0%",
+                ease: "power4.out",
+                stagger: 0.25,
+            },
+            "=-.5");
+
+
+}
+
 // Toggle class menu burger
 btn.addEventListener("click", () => {
     if (btn.classList.contains('is-active')) {
         btn.classList.remove("is-active");
-        hide();
+        tlTransitionMenu.reversed() ? tlTransitionMenu.play() : tlTransitionMenu.reverse();
+
     } else {
         btn.classList.add("is-active");
-        show();
+        tlTransitionMenu.reversed() ? tlTransitionMenu.play() : tlTransitionMenu.reverse();
+
     }
 })
 
-// Function show
-function show() {
 
-    let tl = gsap.timeline();
 
-    gsap.set(".nav__inner, .hamburger", {
-        pointerEvents: "none",
-    });
+// transition page
+let tlTransitionPage = new TimelineMax();
 
-    if (window.innerWidth < 1200) {
-        // Mobile version
-        tl.to(
-                ".nav", {
-                    display: 'block',
-                    visibility: 'visible'
-                },
-                "-=.8")
-            .fromTo(".parts-bg-nav div", {
-                width: "0%",
-            }, {
-                duration: 1,
-                width: "17%",
-                ease: "power4.out",
-                stagger: 0.05,
-            }).fromTo(".marbles-container .marble-image", {
-                maxWidth: "0%",
-            }, {
-                duration: 0,
-                maxWidth: "45%",
-                ease: "power4.out"
-            }).set(".nav__inner", {
-                pointerEvents: "all",
-            }).fromTo(".nav--link", {
-                    translateY: "100%",
-                }, {
-                    duration: 2.60,
-                    translateY: "0%",
-                    ease: "elastic.inOut",
-                    stagger: 0.25,
-                },
-                "-=1.75"
-            ).set(".hamburger", {
-                pointerEvents: "all",
-            });
-    } else {
-        // Desktop version
-        tl.to(
-                ".nav", {
-                    display: 'block',
-                    visibility: 'visible'
-                },
-                "-=.8")
-            .fromTo(".parts-bg-nav div", {
-                width: "0%",
-            }, {
-                duration: 1,
-                width: "17%",
-                ease: "power4.out",
-                stagger: 0.05,
-            }).fromTo(".marbles-container .marble-image", {
-                    maxWidth: "0%",
-                }, {
-                    duration: 1,
-                    maxWidth: "45%",
-                    ease: "power4.out",
-                    stagger: 0.15,
-                },
-                "-=.5")
-            .set(".nav__inner", {
-                pointerEvents: "all",
-            }).fromTo(".nav--link", {
-                    translateY: "100%",
-                }, {
-                    duration: 2.60,
-                    translateY: "0%",
-                    ease: "elastic.inOut",
-                    stagger: 0.25,
-                },
-                "-=1.7"
-            ).set(".hamburger", {
-                pointerEvents: "all",
-            });
+function transitionPage(e) {
+    if (tlTransitionPage.isActive()) {
+        tlTransitionPage.clear()
     }
+    // Mobile version
+    tlTransitionPage.to(
+            ".nav", {
+                display: 'block',
+                visibility: 'visible',
+                zIndex: 10000,
+                duration: 0
+            })
+        .to(".parts-bg-nav div", {
+            duration: 1,
+            width: "17%",
+            ease: "power4.out",
+            stagger: 0.05
+        }).to('#lds-ellipsis', {
+            display: "inline-block",
+            opacity: 1,
+            duration: .5,
+            delay: -.75
+        }).to('#lds-ellipsis', {
+            opacity: 0,
+            duration: .5,
+            display: "none"
+        })
+        .to(".parts-bg-nav div", {
+            delay: -.5,
+            width: "0%",
+            duration: 1,
+            ease: "power4.in",
+            stagger: 0.05,
+        })
+        .to(
+            ".nav", {
+                visibility: 'hidden',
+                display: 'none',
+                zIndex: 5
+            }
+        );
+
 
 }
 
-// Function hide menu
-function hide() {
-
-    let tl = gsap.timeline();
-
-    gsap.set(".nav__inner, .hamburger", {
-        pointerEvents: "none",
-    });
-
-    if (window.innerWidth < 1200) {
-        // Mobile version
-        tl.to(".nav--item-line", {
-            duration: 0.6,
-            scaleX: 0,
-            transformOrigin: 'right center',
-            ease: "Expo.inout",
-            stagger: -0.15
-        }).to(".nav--link", {
-                duration: 2.60,
-                translateY: "100%",
-                ease: "elastic.inOut",
-                stagger: -0.25,
-            },
-            "-=2").fromTo(".marbles-container .marble-image", {
-            maxWidth: "45%",
-        }, {
-            duration: 0,
-            maxWidth: "0%",
-            ease: "power4.out"
-        }).to(".parts-bg-nav div", {
-                width: "0%",
-                duration: 1,
-                ease: "power4.in",
-                stagger: 0.05,
-            },
-            "-=1.5").to(
-            ".nav", {
-                visibility: 'hidden',
-                display: 'none'
-            }
-        ).set(".hamburger", {
-            pointerEvents: "all",
-        });
-    } else {
-        tl.to(".nav--item-line", {
-            duration: 0.6,
-            scaleX: 0,
-            transformOrigin: 'right center',
-            ease: "Expo.inout",
-            stagger: -0.15
-        }).to(".nav--link", {
-                duration: 2.60,
-                translateY: "100%",
-                ease: "elastic.inOut",
-                stagger: -0.25,
-            },
-            "-=2").fromTo(".marbles-container .marble-image", {
-                maxWidth: "45%",
-            }, {
-                duration: 1.5,
-                maxWidth: "0%",
-                ease: "power4.out",
-                stagger: 0.15,
-            },
-            "-=1").to(".parts-bg-nav div", {
-                width: "0%",
-                duration: 1,
-                ease: "power4.in",
-                stagger: 0.05,
-            },
-            "-=1").to(
-            ".nav", {
-                visibility: 'hidden',
-                display: 'none'
-            }
-        ).set(".hamburger", {
-            pointerEvents: "all",
-        });
-    }
-}
 
 
 
@@ -309,11 +289,11 @@ var lastScrolledTop = window.scrollY;
 TweenMax.to({}, 0.016, {
     repeat: -1,
     onRepeat: function () {
-        posX += (mouseX - posX) / 9;
-        posY += (mouseY - posY) / 9;
+        posX += (mouseOfWindowX - posX) / 9;
+        posY += (mouseOfWindowY - posY) / 9;
 
-        otherPosX += (mouseX - otherPosX) / 4;
-        otherPosY += (mouseY - otherPosY) / 4;
+        otherPosX += (mouseOfWindowX - otherPosX) / 4;
+        otherPosY += (mouseOfWindowY - otherPosY) / 4;
 
         TweenMax.set(follower, {
             css: {
@@ -342,6 +322,7 @@ document.addEventListener('mousemove', function (e) {
     mouseOfWindowX = e.clientX;
     mouseOfWindowY = e.clientY;
 });
+
 
 
 // FUNCTIONS UPDATE CURSOR CLASS
@@ -394,6 +375,8 @@ function mouseScroll(e) {
         var offsetLeftProject = el.offsetLeft - mouseOfWindowX;
         var offsetRightProject = offsetLeftProject + el.offsetWidth;
 
+        console.log(offsetTopProject);
+
         if (lastScrolledTop > offsetTopProject && lastScrolledTop < offsetBottomProject &&
             lastScrolledLeft > offsetLeftProject && lastScrolledLeft < offsetRightProject) {
             addCursorProject(el);
@@ -425,37 +408,193 @@ function mouseScroll(e) {
 
 
 // CHANGE CURSOR HOVER EVENTS
+function eventsCursor() {
 
-// Change cursor when mouse enter in click item
-[].forEach.call(document.querySelectorAll('.click'), function (el) {
-    el.addEventListener('mouseenter', function () {
-        addCursorClick(el);
+
+    // Change cursor when mouse enter in click item
+    [].forEach.call(document.querySelectorAll('.click'), function (el) {
+        el.addEventListener('mouseenter', function () {
+            addCursorClick(el);
+        })
+    });
+
+    // Change cursor when mouse enter in click item
+    [].forEach.call(document.querySelectorAll('.click'), function (el) {
+        el.addEventListener('mouseleave', function () {
+            removeCursorClick(el);
+        })
+    });
+
+
+    // Change cursor when mouse enter in project
+    [].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
+        el.addEventListener('mouseenter', function () {
+            addCursorProject(el);
+        })
+    });
+
+    // Change cursor when mouse leave in project
+    [].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
+        el.addEventListener('mouseleave', function () {
+            removeCursorProject(el);
+        })
+    });
+
+}
+eventsCursor();
+
+
+///////////////
+// PAGE TRANSITION
+///////////////
+var isAnimating = false,
+    newLocation = '';
+firstLoad = false;
+
+
+
+//trigger smooth transition from the actual page to the new one 
+[].forEach.call(document.querySelectorAll('[data-type="page-transition"]'), function (el) {
+    el.addEventListener('click', function (event) {
+        event.preventDefault();
+        //detect which page has been selected
+        var newPage = el.getAttribute('href');
+
+        console.log(newPage);
+
+        //if the page is not animating - trigger animation
+        if (!isAnimating) changePage(newPage, true);
+        firstLoad = true;
+
     })
 });
 
-// Change cursor when mouse enter in click item
-[].forEach.call(document.querySelectorAll('.click'), function (el) {
-    el.addEventListener('mouseleave', function () {
-        removeCursorClick(el);
-    })
-});
+
+window.onpopstate = function (event) {
+
+    console.log(event);
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('safari') != -1) {
+        if (ua.indexOf('chrome') > -1) {
+            firstLoad = true;
+
+        } else {
+            alert("2") // Safari
+        }
+    } else {
+        firstLoad = true;
+
+    }
+
+    if (firstLoad) {
+        /*
+        Safari emits a popstate event on page load - check if firstLoad is true before animating
+        if it's false - the page has just been loaded 
+        */
+
+        var newPageArray = location.pathname.split('/'),
+            //this is the url of the page to be loaded 
+            newPage = newPageArray[newPageArray.length - 2];
+        console.log(newPageArray);
+
+        console.log(newLocation + " and " + newPage);
+        if (!isAnimating && newLocation != newPage) {
+            transitionPage();
+            changePage(newPage, false, true);
+        }
+    }
+    firstLoad = true;
+};
 
 
-// Change cursor when mouse enter in project
-[].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
-    el.addEventListener('mouseenter', function () {
-        addCursorProject(el);
-    })
-});
-
-// Change cursor when mouse leave in project
-[].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
-    el.addEventListener('mouseleave', function () {
-        removeCursorProject(el);
-    })
-});
+function changePage(url, bool, boolFromHistory = false) {
+    isAnimating = true;
+    // trigger page animation
 
 
+    //if browser doesn't support CSS transitions
+    loadNewContent(url, bool, boolFromHistory);
+    newLocation = url;
+
+
+    isAnimating = false;
+
+    firstLoad = true;
+
+
+}
+
+
+function loadNewContent(url, bool, boolFromHistory = false) {
+    url = ('' == url) ? '' : url;
+    var newSection = 'cd-' + url.replace('.html', '');
+
+    var section = document.createElement('div');
+    section.className = "cd-main-content " + newSection;
+
+    let scrollContainer = document.getElementById('scroll-container')
+
+    fetch(url)
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (body) {
+            // Convert the HTML string into a document object
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(body, 'text/html');
+            console.log(doc);
+
+            let newContent = doc.getElementById('cd-main-content');
+
+            setTimeout(function () {
+                scrollContainer.innerHTML = '';
+                scrollContainer.appendChild(newContent);
+            }, 1000);
+
+
+            btn.classList.remove("is-active");
+
+            if (!boolFromHistory) tlTransitionMenu.reverse();
+
+            eventsCursor();
+
+            isAnimating = false;
+        });
+
+    if (url != window.location && bool) {
+        //add the new page to the window.history
+        //if the new page was triggered by a 'popstate' event, don't add it
+        window.history.pushState({
+            path: url
+        }, '', url);
+    }
+
+    // section.load(url + ' .cd-main-content > *', function (event) {
+    //     // load new content and replace <main> content with the new one
+    //     $('main').html(section);
+    //     //if browser doesn't support CSS transitions - dont wait for the end of transitions
+    //     var delay = (transitionsSupported()) ? 1200 : 0;
+    //     setTimeout(function () {
+    //         //wait for the end of the transition on the loading bar before revealing the new content
+    //         (section.hasClass('cd-about')) ? $('body').addClass('cd-about'): $('body').removeClass('cd-about');
+    //         $('body').removeClass('page-is-changing');
+    //         $('.cd-loading-bar').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+    //             isAnimating = false;
+    //             $('.cd-loading-bar').off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
+    //         });
+
+    //         if (!transitionsSupported()) isAnimating = false;
+    //     }, delay);
+
+    //     if (url != window.location && bool) {
+    //         //add the new page to the window.history
+    //         //if the new page was triggered by a 'popstate' event, don't add it
+    //         window.history.pushState({
+    //             path: url
+    //         }, '', url);
+    //     }
+    // });
+}
 
 //////////
 // FORM

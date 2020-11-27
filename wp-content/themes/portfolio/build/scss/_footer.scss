@@ -1,6 +1,35 @@
 .footer {
     background: $primary;
     border-top: 2px solid $white;
+    position: relative;
+    z-index: 1;
+
+    .underline {
+        position: relative;
+        overflow: hidden;
+
+        &:after {
+            content: "";
+            position: absolute;
+            right: 0;
+            width: 0;
+            bottom: 0px;
+            background: $white;
+            height: 1px;
+
+            transition-property: width;
+            transition-duration: 0.7s;
+            transition-timing-function: ease-out;
+        }
+
+        &:hover:after,
+        &:focus:after,
+        &:active:after {
+            left: 0;
+            right: auto;
+            width: 100%;
+        }
+    }
 
     .content-footer {
         display: flex;
@@ -9,6 +38,7 @@
         @include media-breakpoint-up(lg) {
             flex-direction: row;
             align-items: center;
+            justify-content: space-between;
         }
 
         #tempon-footer {
@@ -17,36 +47,62 @@
             margin-left: auto;
             margin-right: auto;
 
+
             @include media-breakpoint-up(lg) {
                 margin-left: 0;
-                margin-right: 2rem;
+                margin-right: 0;
+            }
+
+            .text-rounded {
+                transform-origin: 50% 50%;
+                -webkit-animation: spin 15s linear infinite;
+                -moz-animation: spin 15s linear infinite;
+                animation: spin 15s linear infinite;
+            }
+
+            @-moz-keyframes spin {
+                100% {
+                    -moz-transform: rotate(360deg);
+                }
+            }
+
+            @-webkit-keyframes spin {
+                100% {
+                    -webkit-transform: rotate(360deg);
+                }
+            }
+
+            @keyframes spin {
+                100% {
+                    -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                }
             }
         }
 
         .email-contact {
             margin-top: 4rem;
             font-family: $font-family-text;
-            font-size: 22px;
-            color: $white;
+            font-size: 6vw;
 
+            a {
+                color: $white;
+            }
 
             @include media-breakpoint-up(lg) {
                 margin-top: 0;
-                font-size: 33px;
-            }
+                font-size: 3vw;
 
-            @include media-breakpoint-up(xl) {
-                font-size: 45px;
             }
         }
 
         .list-networks {
             margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
 
             @include media-breakpoint-up(lg) {
                 margin-top: 0;
-                margin-left: auto;
-
             }
 
             li {
@@ -54,6 +110,7 @@
                 margin: 15px 0;
                 font-family: $font-family-text;
                 font-size: 19px;
+                display: inline;
 
                 &:first-of-type {
                     margin-top: 0;
@@ -61,6 +118,12 @@
 
                 &:last-of-type {
                     margin-bottom: 0;
+                }
+
+                a {
+                    color: $white;
+
+
                 }
             }
         }
@@ -97,6 +160,9 @@
                 margin-top: 0;
 
             }
+
+
+
 
             a {
                 font-size: 9px;

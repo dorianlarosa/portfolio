@@ -3,8 +3,15 @@
 
 get_header();
 ?>
-<section id="header-section" class="container-fluid">
-    <div class="container">
+<section id="header-section">
+    <div class="strokes strokes__black">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="wrapper-section">
         <div class="content-header">
             <h1 class="title-page">A propos</h1>
             <p class="intro-page">
@@ -14,9 +21,15 @@ get_header();
     </div>
 </section>
 
-<section id="section-bienvenu" class="container-fluid">
-    <div class="container">
-        <img class="element-transition-header" src="<?= get_template_directory_uri() ?>/images/work-space.jpg" alt="">
+<section id="section-bienvenu">
+    <div class="strokes">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="wrapper-section">
         <div class="informations">
             <div class="row">
                 <div class="col-12 col-lg-5">
@@ -48,12 +61,19 @@ get_header();
     </div>
 </section>
 
-<section id="section-engagements" class="container-fluid">
-    <div class="container">
+<section id="section-engagements">
+    <div class="strokes strokes__black">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="wrapper-section">
         <h2 class="title-white">Mes engagements</h2>
         <div class="list-engagements">
             <div class="row">
-                <div class="col-12 col-lg-4 container-engagement-item">
+                <div class="col-12 col-xl-4 container-engagement-item">
                     <div class="engagement-item">
                         <div class="engagement-item__container-title">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clipboard-data" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +88,7 @@ get_header();
                         </p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 container-engagement-item">
+                <div class="col-12 col-xl-4 container-engagement-item">
                     <div class="engagement-item">
                         <div class="engagement-item__container-title">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-vector-pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +102,7 @@ get_header();
                         </p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 container-engagement-item">
+                <div class="col-12 col-xl-4 container-engagement-item">
                     <div class="engagement-item">
                         <div class="engagement-item__container-title">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-code" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -117,12 +137,12 @@ get_header();
         </div>
 
         <div class="container-video">
-        <video id='video' controls="controls" preload='none' width="600" poster="http://media.w3.org/2010/05/sintel/poster.png">
-    <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
-    <source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
-    <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />
+            <video id='video' controls="controls" preload='none' width="600" poster="http://media.w3.org/2010/05/sintel/poster.png">
+                <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
+                <source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
+                <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />
         </div>
-    </div> 
+    </div>
 </section>
 
 <?php get_template_part('parts/form-section'); ?>

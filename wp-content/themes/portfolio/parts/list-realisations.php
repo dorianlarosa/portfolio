@@ -7,7 +7,6 @@
 
             </div>
             <h3 class="title-projet">Vous C'est Nous</h3>
-            </p>
         </div>
     </a>
     <a class="item-projet" href="#">

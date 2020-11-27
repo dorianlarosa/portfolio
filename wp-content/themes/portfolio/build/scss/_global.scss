@@ -18,10 +18,24 @@
 body {
     background: $white;
     cursor: none;
-
+    &.stop-scrolling { 
+        overflow: hidden; 
+    } 
     main {
         overflow: hidden;
-        position: relative;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        #scroll-container {
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+        }
     }
 
     a,
@@ -49,7 +63,7 @@ p {
     font-weight: 400;
     font-family: $font-family-text;
     margin: 0;
-    color:$primary;
+    color: $primary;
 
     @include media-breakpoint-up(sm) {
         font-size: 16px;
@@ -102,17 +116,18 @@ textarea:focus {
 
 
 .text-white {
-    color:$white;
-} 
+    color: $white;
+}
 
 .row {
-    margin:0;
+    margin-right: -10px;
+    margin-left: -10px;
 
-    &>* {
-        padding-left:0;
-        padding-right:0;
+    // &>* {
+    //     padding-left: 0;
+    //     padding-right: 0;
 
-    }
+    // }
 }
 
 //////////////////
@@ -194,7 +209,7 @@ textarea:focus {
 // CURSOR
 ///////////////
 .cursor {
-    position: absolute;
+    position: fixed;
     background: white;
     width: 8px;
     height: 8px;
@@ -251,7 +266,7 @@ textarea:focus {
         top: 0;
         left: 0;
         display: block;
-        //background-image: url("images/view-project.png");
+        background-image: url("images/cursor-2.png");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -267,7 +282,7 @@ textarea:focus {
 
 
 .cursor-follower {
-    position: absolute;
+    position: fixed;
     background: transparent;
     border: 1px solid $action;
     width: 40px;
@@ -309,8 +324,13 @@ textarea:focus {
 
 section,
 footer {
-    padding-top: 110px;
-    padding-bottom: 110px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    @include media-breakpoint-up(md) {
+        padding-top: 110px;
+        padding-bottom: 110px;
+    }
 
     &.footer {
         padding-bottom: 0px;
@@ -320,6 +340,8 @@ footer {
         padding-top: 130px;
         padding-bottom: 130px;
         background: $primary;
+        position:relative;
+        z-index:1;
 
         @include media-breakpoint-up(md) {
             padding-top: 160px;
@@ -358,6 +380,9 @@ footer {
                 }
 
                 @include media-breakpoint-up(lg) {
+                    font-size: 60px;
+                }
+                @include media-breakpoint-up(xl) {
                     font-size: 70px;
                 }
 
@@ -373,6 +398,7 @@ footer {
                     width: 50%;
                     margin-top: 0;
                     text-align: left;
+                    padding-left:10px;
                 }
 
             }
@@ -416,7 +442,6 @@ footer {
         }
 
         @include media-breakpoint-up(xl) {
-            font-size: 55px;
             width: 600px;
         }
     }
@@ -440,6 +465,7 @@ footer {
         @include media-breakpoint-up(sm) {
             font-size: 22px;
         }
+
         @include media-breakpoint-up(md) {
             width: 90%;
             font-size: 28px;
@@ -481,14 +507,14 @@ footer {
 
         @include media-breakpoint-up(lg) {
             flex-direction: row;
-            justify-content: space-around;
+            justify-content: space-between;
         }
 
         .container-text {
             width: 100%;
 
             @include media-breakpoint-up(lg) {
-                width: 45%;
+                width: 47%;
             }
 
             .text-item {

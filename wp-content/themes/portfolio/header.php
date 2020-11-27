@@ -25,9 +25,27 @@
             <div class="content-navbar">
 
                 <div id="container-logo">
-                    <!-- <a href="/">
-                        <img id="logo-nav" src="<?= get_template_directory_uri() ?>/images/logo.png" alt="Dorian LA ROSA, Freelance Developpeur">
-                    </a> -->
+                    <a data-type="page-transition" href="/" class="click">
+                        <!-- Generator: Adobe Illustrator 23.0.5, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1645.8 484" style="enable-background:new 0 0 1645.8 484;" xml:space="preserve">
+                            <style type="text/css">
+
+                            </style>
+                            <g>
+                                <circle class="st0" cx="147" cy="144" r="127.5" />
+                                <polygon class="st0" points="115.8,274.5 116.1,327.5 63.1,274.5 116.1,221.5 	" />
+                                <path class="st0" d="M148.6,20.2l172.9,134.3l-157,245L146.6,21.2C146.6,20.1,147.8,19.5,148.6,20.2z" />
+                                <rect x="170.5" y="174.5" class="st0" width="128" height="108" />
+                                <polyline class="st0" points="154.7,191.5 42.5,346.5 192.5,459.5 176.5,174.5 	" />
+                                <polyline class="st0" points="298.5,244.6 248.5,212.5 298.5,219 	" />
+                                <polygon class="st1" points="238.7,111.9 212.5,121.3 249.5,134.1 	" />
+                            </g>
+                            <g>
+                                <text transform="matrix(1 0 0 1 398.0492 286.6928)" class="st2 st3 st4">DORIAN LA ROSA</text>
+                            </g>
+                        </svg>
+
+                    </a>
                 </div>
 
 
@@ -48,13 +66,14 @@
                 <div></div>
                 <div></div>
                 <div></div>
+                <div id="lds-ellipsis"><div class="content-lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
             </div>
 
             <div class="nav__inner">
                 <div class="nav--items ">
                     <div class="nav--item click">
                         <div class="nav--item-link">
-                            <a href="/" class="nav--link">
+                            <a data-type="page-transition" href="/" class="nav--link">
                                 <span class="number-of-link">01</span>
                                 <span class="nav--link-text">accueil</span>
                             </a>
@@ -63,7 +82,7 @@
 
                     <div class="nav--item click">
                         <div class="nav--item-link">
-                            <a href="/realisations/" class="nav--link">
+                            <a data-type="page-transition" href="/realisations/" class="nav--link">
                                 <span class="number-of-link">02</span>
 
                                 <span class="nav--link-text">Réalisations</span>
@@ -72,7 +91,7 @@
                     </div>
                     <div class="nav--item click">
                         <div class="nav--item-link">
-                            <a href="/a-propos/" class="nav--link">
+                            <a data-type="page-transition" href="/a-propos/" class="nav--link">
                                 <span class="number-of-link">03</span>
 
                                 <span class="nav--link-text">a propos</span>
@@ -82,7 +101,7 @@
 
                     <div class="nav--item click">
                         <div class="nav--item-link">
-                            <a href="/contact/" class="nav--link">
+                            <a data-type="page-transition" href="/contact/" class="nav--link">
                                 <span class="number-of-link">04</span>
 
                                 <span class="nav--link-text">contact</span>
@@ -104,3 +123,5 @@
         </nav>
 
         <div id="scroll-container" class="scroll-container">
+            <div id="cd-main-content" class="cd-main-content">
+                <div>

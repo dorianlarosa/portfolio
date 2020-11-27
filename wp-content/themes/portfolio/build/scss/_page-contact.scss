@@ -1,6 +1,18 @@
 #section-list-contact {
     background: $white;
-    padding-top: 0 !important;
+    position: relative;
+    z-index: 1;
+
+    .row {
+        margin-right: -15px;
+        margin-left: -15px;
+
+        &>* {
+            padding-left: 5px;
+            padding-right: 5px;
+
+        }
+    }
 
     .item-contact {
         box-shadow: 0 0 20px #00000021;
@@ -31,33 +43,39 @@
             }
 
             @include media-breakpoint-up(lg) {
-                font-size: 22px;
+                font-size: 16px;
+            }
+
+            @include media-breakpoint-up(xl) {
+                font-size: 20px;
             }
 
         }
     }
+
+    .container-texts {
+        margin-top:3rem;
+    }
 }
 
-#text-contact-section {
-    padding-top:0 !important;
-
-}
 
 
 #section-social-networks {
     background: $primary;
-
+    position: relative;
+    z-index:1;
+    
     .container-network-link {
         display: flex;
         justify-content: center;
-        margin-top:50px;
+        margin-top: 50px;
 
         &:first-of-type {
-            margin-top:0;
+            margin-top: 0;
         }
 
         @include media-breakpoint-up(md) {
-            margin-top:0;
+            margin-top: 0;
         }
 
         .network-link {

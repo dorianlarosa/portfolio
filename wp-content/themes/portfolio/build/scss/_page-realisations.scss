@@ -1,21 +1,27 @@
 #section-list-réalisations {
-    padding-top: 0;
-    background:$white;
+    background: $white;
+    position: relative;
+    z-index: 1;
+
     .list-realisations {
-        margin-top: 0;
+        margin-top: 0; 
 
         .item-projet {
             &.hover {
 
+                .number-projet,
                 .title-projet {
                     color: $primary;
+                    -webkit-text-stroke: 1px transparent;
+
                 }
             }
 
+
+
+            .number-projet,
             .title-projet {
-
                 -webkit-text-stroke: 1px $primary;
-
             }
         }
     }

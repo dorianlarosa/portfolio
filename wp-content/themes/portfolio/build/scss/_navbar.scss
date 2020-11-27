@@ -10,19 +10,44 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
 
     }
 
     #container-logo {
-        #logo-nav {
-            width: 175px;
-            height: auto;
+        #Calque_1 {
+            height: 50px;
 
             @include media-breakpoint-up(md) {
-                width: 270px;
+                height: 70px;
             }
+        }
+
+        .st0 {
+            fill: none;
+            stroke: white;
+            stroke-width: 11;
+            stroke-miterlimit: 10;
+        }
+
+        .st1 {
+            fill: none;
+            stroke: white;
+            stroke-width: 7;
+            stroke-miterlimit: 10;
+        }
+
+        .st2 {
+            fill: white;
+        }
+
+        .st3 {
+            font-family: $font-family-title;
+        }
+
+        .st4 {
+            font-size: 132px;
         }
     }
 
@@ -99,41 +124,117 @@
         height: 100%;
         width: 100%;
 
-        div {
-            //width: 25%;
+        &>div {
+            width: 0;
             position: absolute;
 
             height: 100%;
             background: $primary;
 
+            &:nth-child(1) {
+                left: 0;
+            }
+
+            &:nth-child(2) {
+                left: 16.6666666667%;
+
+            }
+
+            &:nth-child(3) {
+                left: 33.3333333333%;
+
+            }
+
+            &:nth-child(4) {
+                left: 50%;
+
+            }
+
+            &:nth-child(5) {
+                left: 66.6666666667%;
+
+            }
+
+            &:nth-child(6) {
+                left: 83.3333333333%;
+            }
         }
 
-        div:nth-child(1) {
-            left: 0;
-        }
 
-        div:nth-child(2) {
-            left: 16.6666666667%;
 
-        }
-
-        div:nth-child(3) {
-            left: 33.3333333333%;
-
-        }
-
-        div:nth-child(4) {
+        #lds-ellipsis {
+            display: none;
+            position: absolute;
+            width: 80px;
+            height: 80px;
             left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
 
-        }
+            .content-lds-ellipsis {
+                position: relative;
 
-        div:nth-child(5) {
-            left: 66.6666666667%;
+                div {
+                    position: absolute;
+                    top: 33px;
+                    width: 13px;
+                    height: 13px;
+                    border-radius: 50%;
+                    background: #fff;
+                    animation-timing-function: cubic-bezier(0, 1, 1, 0);
 
-        }
+                    &:nth-child(1) {
+                        left: 8px;
+                        animation: lds-ellipsis1 0.6s infinite;
+                    }
 
-        div:nth-child(6) {
-            left: 83.3333333333%;
+                    &:nth-child(2) {
+                        left: 8px;
+                        animation: lds-ellipsis2 0.6s infinite;
+                    }
+
+                    &:nth-child(3) {
+                        left: 32px;
+                        animation: lds-ellipsis2 0.6s infinite;
+                    }
+
+                    &:nth-child(4) {
+                        left: 56px;
+                        animation: lds-ellipsis3 0.6s infinite;
+                    }
+
+                    @keyframes lds-ellipsis1 {
+                        0% {
+                            transform: scale(0);
+                        }
+
+                        100% {
+                            transform: scale(1);
+                        }
+                    }
+
+                    @keyframes lds-ellipsis3 {
+                        0% {
+                            transform: scale(1);
+                        }
+
+                        100% {
+                            transform: scale(0);
+                        }
+                    }
+
+                    @keyframes lds-ellipsis2 {
+                        0% {
+                            transform: translate(0, 0);
+                        }
+
+                        100% {
+                            transform: translate(24px, 0);
+                        }
+                    }
+                }
+
+            }
         }
     }
 
