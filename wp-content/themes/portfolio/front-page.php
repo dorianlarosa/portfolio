@@ -102,7 +102,9 @@
             <div class="col-12 col-lg-6 col-element col-element__text">
                 <p class="pre-title">Découvrez mes engagements</p>
                 <h3>En savoir d'avantage sur moi</h3>
-                <p class="text-section"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat harum veritatis, pariatur minima dolor doloribus, numquam facilis ducimus unde vero exercitationem!</p>
+                <p class="text-section">
+                Les gens les appellent souvent simplement des sites Web, des applications ou des plates-formes. La plupart du temps, j'essaye de concevoir des expériences utilisateur.
+                </p>
                 <a href="#" class="link-btn btn click">
                     Découvrir
                 </a>

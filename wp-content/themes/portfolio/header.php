@@ -18,19 +18,13 @@
         <div class="cursor"></div>
         <div class="cursor-follower"></div>
 
-
-
-
         <div id="navbar">
             <div class="content-navbar">
 
                 <div id="container-logo">
                     <a data-type="page-transition" href="/" class="click">
                         <!-- Generator: Adobe Illustrator 23.0.5, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                        <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1645.8 484" style="enable-background:new 0 0 1645.8 484;" xml:space="preserve">
-                            <style type="text/css">
-
-                            </style>
+                        <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1645.8 484" style="enable-background:new 0 0 1645.8 484;" xml:space="preserve">
                             <g>
                                 <circle class="st0" cx="147" cy="144" r="127.5" />
                                 <polygon class="st0" points="115.8,274.5 116.1,327.5 63.1,274.5 116.1,221.5 	" />
@@ -60,38 +54,45 @@
         <nav class="nav">
 
             <div class="parts-bg-nav">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div id="lds-ellipsis"><div class="content-lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+                <div class="part-bg-nav"></div>
+                <div class="part-bg-nav"></div>
+                <div class="part-bg-nav"></div>
+                <div class="part-bg-nav"></div>
+                <div class="part-bg-nav"></div>
+                <div class="part-bg-nav"></div>
+                <div id="lds-ellipsis">
+                    <div class="content-lds-ellipsis">
+                        <div class="lds-ellipsis-item"></div>
+                        <div class="lds-ellipsis-item"></div>
+                        <div class="lds-ellipsis-item"></div>
+                        <div class="lds-ellipsis-item"></div>
+                    </div>
+                </div>
             </div>
 
             <div class="nav__inner">
                 <div class="nav--items ">
-                    <div class="nav--item click">
+                    <div class="nav--item">
                         <div class="nav--item-link">
-                            <a data-type="page-transition" href="/" class="nav--link">
+                            <a data-type="page-transition" href="/" class="nav--link click">
                                 <span class="number-of-link">01</span>
                                 <span class="nav--link-text">accueil</span>
                             </a>
                         </div>
                     </div>
 
-                    <div class="nav--item click">
+                    <div class="nav--item">
                         <div class="nav--item-link">
-                            <a data-type="page-transition" href="/realisations/" class="nav--link">
+                            <a data-type="page-transition" href="/realisations/" class="nav--link click">
                                 <span class="number-of-link">02</span>
 
                                 <span class="nav--link-text">Réalisations</span>
                             </a>
                         </div>
                     </div>
-                    <div class="nav--item click">
+                    <div class="nav--item">
                         <div class="nav--item-link">
-                            <a data-type="page-transition" href="/a-propos/" class="nav--link">
+                            <a data-type="page-transition" href="/a-propos/" class="nav--link click">
                                 <span class="number-of-link">03</span>
 
                                 <span class="nav--link-text">a propos</span>
@@ -99,9 +100,9 @@
                         </div>
                     </div>
 
-                    <div class="nav--item click">
+                    <div class="nav--item">
                         <div class="nav--item-link">
-                            <a data-type="page-transition" href="/contact/" class="nav--link">
+                            <a data-type="page-transition" href="/contact/" class="nav--link click">
                                 <span class="number-of-link">04</span>
 
                                 <span class="nav--link-text">contact</span>

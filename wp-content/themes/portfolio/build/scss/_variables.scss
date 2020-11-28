@@ -38,7 +38,7 @@ monospace;
             @content;
         }
     }
-}
+} 
 
 @mixin hover-detect {
     @media not all and (pointer: coarse) {
@@ -46,12 +46,13 @@ monospace;
         @content;
 
     }
-}
+} 
  
 
 $action : rgb(116, 54, 209);
 $white : rgb(255, 255, 255);
-$primary : rgb(0, 0, 0);
+$primary : #101010;
+$deep-black : rgb(0, 0, 0);
 $grey : rgb(179, 179, 179);
 $grey-light : rgb(237, 237, 238);
 $grey-dark : rgb(145, 145, 145);

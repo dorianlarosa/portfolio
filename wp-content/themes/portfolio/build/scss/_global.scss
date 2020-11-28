@@ -18,9 +18,12 @@
 body {
     background: $white;
     cursor: none;
-    &.stop-scrolling { 
-        overflow: hidden; 
-    } 
+    position: initial;
+
+    &.stop-scrolling {
+        overflow: hidden;
+    }
+
     main {
         overflow: hidden;
         position: fixed;
@@ -105,9 +108,13 @@ textarea:focus {
 
 .wrapper-section,
 .content-navbar {
-    width: calc(100% - 80px);
+    width: calc(100% - 40px);
     margin: auto;
     padding: 0 10px;
+
+    @include media-breakpoint-up(sm) {
+        width: calc(100% - 80px);
+    }
 
     @include media-breakpoint-up(md) {
         width: 66.6666666667%;
@@ -119,15 +126,12 @@ textarea:focus {
     color: $white;
 }
 
+//////////////////
+// DISABBLEE ROW MARGIN (NOT USE CONTAINER CLASS)
+//////////////////
 .row {
     margin-right: -10px;
     margin-left: -10px;
-
-    // &>* {
-    //     padding-left: 0;
-    //     padding-right: 0;
-
-    // }
 }
 
 //////////////////
@@ -144,7 +148,7 @@ textarea:focus {
 
     &.strokes__black {
         div {
-            background: #101213;
+            background: $deep-black;
         }
     }
 
@@ -159,7 +163,11 @@ textarea:focus {
 
     div:nth-child(1) {
 
-        left: 40px;
+        left: 20px;
+
+        @include media-breakpoint-up(sm) {
+            left: 40px;
+        }
 
         @include media-breakpoint-up(md) {
             left: 16.6666666667%;
@@ -192,8 +200,13 @@ textarea:focus {
     }
 
     div:nth-child(5) {
-        right: 40px;
+        right: 20px;
         left: auto;
+
+        @include media-breakpoint-up(sm) {
+            right: 40px;
+            left: auto;
+        }
 
         @include media-breakpoint-up(md) {
             left: 83.3333333333%;
@@ -276,11 +289,7 @@ textarea:focus {
     }
 }
 
-
-
-
-
-
+// Round follow cursor
 .cursor-follower {
     position: fixed;
     background: transparent;
@@ -308,19 +317,12 @@ textarea:focus {
         opacity: 0;
         transform: scale(0);
     }
-
-
 }
-
-
-
-
 
 
 ////////////////
 // SECTION
 ////////////////
-
 
 section,
 footer {
@@ -340,8 +342,8 @@ footer {
         padding-top: 130px;
         padding-bottom: 130px;
         background: $primary;
-        position:relative;
-        z-index:1;
+        position: relative;
+        z-index: 1;
 
         @include media-breakpoint-up(md) {
             padding-top: 160px;
@@ -353,17 +355,16 @@ footer {
             padding-bottom: 200px;
         }
 
+        // Header page
         .content-header {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
 
-
             @include media-breakpoint-up(lg) {
                 flex-direction: row;
             }
-
 
             .title-page {
                 color: $white;
@@ -382,10 +383,10 @@ footer {
                 @include media-breakpoint-up(lg) {
                     font-size: 60px;
                 }
+
                 @include media-breakpoint-up(xl) {
                     font-size: 70px;
                 }
-
             }
 
             .intro-page {
@@ -398,9 +399,8 @@ footer {
                     width: 50%;
                     margin-top: 0;
                     text-align: left;
-                    padding-left:10px;
+                    padding-left: 10px;
                 }
-
             }
         }
     }
@@ -501,6 +501,7 @@ footer {
         }
     }
 
+    // TEXTS container 2 cols
     .container-texts {
         display: flex;
         flex-direction: column;
@@ -523,7 +524,5 @@ footer {
                 }
             }
         }
-
     }
-
 }

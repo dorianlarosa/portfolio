@@ -33,8 +33,6 @@ var body = document.body;
 
 if (getOS() != "Mac OS" && getOS() != "iOS") {
 
-
-
     var scroller = {
         target: scrollContainer,
         ease: .05, // <= scroll speed
@@ -74,7 +72,6 @@ if (getOS() != "Mac OS" && getOS() != "iOS") {
                 var height = scroller.target.clientHeight;
                 body.style.height = height + "px";
             }, 400);
-
         }
 
         var scrollY = window.pageYOffset || html.scrollTop || body.scrollTop || 0;
@@ -92,7 +89,6 @@ if (getOS() != "Mac OS" && getOS() != "iOS") {
         });
 
         requestId = scroller.scrollRequest > 0 ? requestAnimationFrame(updateScroller) : null;
-
     }
 
     function onScroll() {
@@ -101,8 +97,6 @@ if (getOS() != "Mac OS" && getOS() != "iOS") {
         if (!requestId) {
             requestId = requestAnimationFrame(updateScroller);
         }
-
-        //console.log(scroller.scrollRequest);
     }
 
     function onResize() {
@@ -111,6 +105,7 @@ if (getOS() != "Mac OS" && getOS() != "iOS") {
         if (!requestId) {
             requestId = requestAnimationFrame(updateScroller);
         }
+
     }
 } else {
     scrollContainer.style.position = 'initial';
@@ -118,8 +113,11 @@ if (getOS() != "Mac OS" && getOS() != "iOS") {
 }
 
 
-// BURGER MENU
 
+
+/////////////
+// MENU ANIMATION
+/////////////
 const {
     gsap
 } = window;
@@ -127,90 +125,149 @@ const {
 const btn = document.querySelector('.hamburger');
 
 
+// Check if default device is mobile or desktop
+let defautWidthWindow;
 
+if (window.innerWidth <= 767) {
+    defautWidthWindow = 'mobile';
+} else {
+    defautWidthWindow = 'desktop';
+}
+
+// Init transition menu
 let tlTransitionMenu = new TimelineMax({
     paused: true,
     reversed: true
 });
 
 
-if (window.innerWidth < 1200) {
-    // Mobile version
-    tlTransitionMenu.to(
-            ".nav", {
-                display: 'block',
-                visibility: 'visible',
-                duration: 0,
+defineTransitionMenu();
 
+function defineTransitionMenu() {
+    if (window.innerWidth <= 767) {
+        // Mobile version
+        tlTransitionMenu.fromTo(
+                ".nav", {
+                    display: 'none',
+                    visibility: 'hidden',
+                    duration: 0,
+
+                }, {
+                    display: 'block',
+                    visibility: 'visible',
+                    duration: 0,
+
+                })
+            .fromTo(".parts-bg-nav .part-bg-nav", {
+                width: "0%",
+            }, {
+                duration: 1,
+                width: "50%",
+                ease: "power2.out",
+                stagger: 0.05,
             })
-        .to(".parts-bg-nav div", {
-            duration: 1,
-            width: "17%",
-            ease: "power4.out",
-            stagger: 0.05,
-        })
-        .to(".marbles-container .marble-image", {
-            duration: 0,
-            maxWidth: "45%",
-            ease: "power4.out"
-        })
-        .to(".nav--link", {
-                duration: 2.60,
-                translateY: "0%",
-                ease: "elastic.inOut",
-                stagger: 0.25,
-            },
-            "-=+1.7"
-        );
-} else {
-    // Desktop version
-    tlTransitionMenu.to(
-            ".nav", {
-                display: 'block',
-                visibility: 'visible',
-                duration: 0
-            }
-        )
-        .to(".parts-bg-nav div", {
-            duration: 1,
-            width: "17%",
-            ease: "power4.out",
-            stagger: 0.05,
-        })
-        .to(".marbles-container .marble-image", {
+            .fromTo(".marbles-container .marble-image", {
+                maxWidth: "0%",
+            }, {
+                duration: 0,
+                maxWidth: "45%",
+                ease: "power4.out"
+            })
+
+            .fromTo(".nav--link", {
+                    translateY: "100%",
+                }, {
+                    duration: 1,
+                    translateY: "0%",
+                    ease: "power4.out",
+                    stagger: 0.25,
+                },
+                "-=.3"
+            );
+    } else {
+        // desktop version
+        tlTransitionMenu.fromTo(
+                ".nav", {
+                    display: 'none',
+                    visibility: 'hidden',
+                    duration: 0,
+
+                }, {
+                    display: 'block',
+                    visibility: 'visible',
+                    duration: 0,
+
+                })
+            .fromTo(".parts-bg-nav .part-bg-nav", {
+                width: "0%",
+            }, {
+                duration: 1,
+                width: "17%",
+                ease: "power4.out",
+                stagger: 0.05,
+            })
+            .fromTo(".marbles-container .marble-image", {
+                maxWidth: "0%",
+            }, {
                 duration: 1,
                 maxWidth: "45%",
-                ease: "power4.out",
-                stagger: 0.15,
-            },
-            "-=.7")
-        .to(".nav--link", {
+                ease: "power4.out"
+            }, ">-.5")
+
+            .fromTo(".nav--link", {
+                translateY: "100%",
+            }, {
                 duration: 1,
                 translateY: "0%",
                 ease: "power4.out",
                 stagger: 0.25,
-            },
-            "=-.5");
+            }, "<");
+    }
 
+}
 
+// Change transition when window is resize
+window.addEventListener("resize", onResizeMenu);
+
+function onResizeMenu() {
+    if (window.innerWidth <= 767 && defautWidthWindow == 'desktop') {
+        tlTransitionMenu.clear();
+        defineTransitionMenu();
+        defautWidthWindow = 'mobile';
+    } else if (window.innerWidth > 767 && defautWidthWindow == 'mobile') {
+        tlTransitionMenu.clear();
+        defineTransitionMenu();
+        defautWidthWindow = 'desktop';
+    }
 }
 
 // Toggle class menu burger
 btn.addEventListener("click", () => {
     if (btn.classList.contains('is-active')) {
-        btn.classList.remove("is-active");
-        tlTransitionMenu.reversed() ? tlTransitionMenu.play() : tlTransitionMenu.reverse();
 
+        btn.classList.remove("is-active");
+
+        // play transition menu
+        tlTransitionMenu.reversed() ? tlTransitionMenu.play() : tlTransitionMenu.reverse();
     } else {
         btn.classList.add("is-active");
-        tlTransitionMenu.reversed() ? tlTransitionMenu.play() : tlTransitionMenu.reverse();
 
+        // play reverse transition menu
+        tlTransitionMenu.reversed() ? tlTransitionMenu.play() : tlTransitionMenu.reverse();
     }
 })
 
 
+///////////////
+// PAGE TRANSITION PREVIOUS AND NEXT POPSTATE
+///////////////
 
-// transition page
+
+var isAnimating = false,
+    newLocation = '';
+firstLoad = false;
+
+// TRANSITION
 let tlTransitionPage = new TimelineMax();
 
 function transitionPage(e) {
@@ -225,7 +282,7 @@ function transitionPage(e) {
                 zIndex: 10000,
                 duration: 0
             })
-        .to(".parts-bg-nav div", {
+        .to(".parts-bg-nav .part-bg-nav", {
             duration: 1,
             width: "17%",
             ease: "power4.out",
@@ -240,7 +297,7 @@ function transitionPage(e) {
             duration: .5,
             display: "none"
         })
-        .to(".parts-bg-nav div", {
+        .to(".parts-bg-nav .part-bg-nav", {
             delay: -.5,
             width: "0%",
             duration: 1,
@@ -254,13 +311,112 @@ function transitionPage(e) {
                 zIndex: 5
             }
         );
-
-
 }
 
 
 
 
+
+
+
+//trigger smooth transition from the actual page to the new one 
+[].forEach.call(document.querySelectorAll('[data-type="page-transition"]'), function (el) {
+    el.addEventListener('click', function (event) {
+        event.preventDefault();
+        //detect which page has been selected
+        var newPage = el.getAttribute('href');
+
+        console.log(newPage);
+
+        //if the page is not animating - trigger animation
+        if (!isAnimating) changePage(newPage, true);
+        firstLoad = true;
+
+    })
+});
+
+
+window.onpopstate = function (event) {
+    /*
+    Safari emits a popstate event on page load - check if firstLoad is true before animating
+    if it's false - the page has just been loaded 
+    */
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('safari') != -1) {
+        if (ua.indexOf('chrome') > -1) {
+            firstLoad = true;
+        }
+    } else {
+        firstLoad = true;
+    }
+
+    if (firstLoad) {
+        var newPageArray = location.pathname.split('/'),
+            //this is the url of the page to be loaded 
+            newPage = newPageArray[newPageArray.length - 2];
+
+        if (!isAnimating && newLocation != newPage) {
+            transitionPage();
+            changePage(newPage, false, true);
+        }
+    }
+    firstLoad = true;
+};
+
+function changePage(url, bool, boolFromHistory = false) {
+    isAnimating = true;
+    // trigger page animation
+
+    //if browser doesn't support CSS transitions
+    loadNewContent(url, bool, boolFromHistory);
+    newLocation = url;
+    isAnimating = false;
+    firstLoad = true;
+}
+
+
+function loadNewContent(url, bool, boolFromHistory = false) {
+    url = ('' == url) ? '' : url;
+    var newSection = 'cd-' + url.replace('.html', '');
+
+    var section = document.createElement('div');
+    section.className = "cd-main-content " + newSection;
+
+    let scrollContainer = document.getElementById('scroll-container')
+
+    fetch(url)
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (responseBody) {
+            // Convert the HTML string into a document object
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(responseBody, 'text/html');
+            let newContent = doc.getElementById('cd-main-content');
+
+            setTimeout(function () {
+                scrollContainer.innerHTML = '';
+                scrollContainer.appendChild(newContent);
+                scroller.resizeRequest = 1;
+                updateScroller();
+                window.scrollTo(0, 0);
+            }, 1000);
+
+            btn.classList.remove("is-active");
+
+            if (!boolFromHistory) tlTransitionMenu.reverse();
+            eventsCursor(); 
+            isAnimating = false;
+        });
+
+    if (url != window.location && bool) {
+        //add the new page to the window.history
+        //if the new page was triggered by a 'popstate' event, don't add it
+        window.history.pushState({
+            path: url
+        }, '', url);
+    }
+}
 
 //////////
 // CURSOR
@@ -410,7 +566,6 @@ function mouseScroll(e) {
 // CHANGE CURSOR HOVER EVENTS
 function eventsCursor() {
 
-
     // Change cursor when mouse enter in click item
     [].forEach.call(document.querySelectorAll('.click'), function (el) {
         el.addEventListener('mouseenter', function () {
@@ -441,160 +596,11 @@ function eventsCursor() {
     });
 
 }
+
 eventsCursor();
 
 
-///////////////
-// PAGE TRANSITION
-///////////////
-var isAnimating = false,
-    newLocation = '';
-firstLoad = false;
 
-
-
-//trigger smooth transition from the actual page to the new one 
-[].forEach.call(document.querySelectorAll('[data-type="page-transition"]'), function (el) {
-    el.addEventListener('click', function (event) {
-        event.preventDefault();
-        //detect which page has been selected
-        var newPage = el.getAttribute('href');
-
-        console.log(newPage);
-
-        //if the page is not animating - trigger animation
-        if (!isAnimating) changePage(newPage, true);
-        firstLoad = true;
-
-    })
-});
-
-
-window.onpopstate = function (event) {
-
-    console.log(event);
-    var ua = navigator.userAgent.toLowerCase();
-    if (ua.indexOf('safari') != -1) {
-        if (ua.indexOf('chrome') > -1) {
-            firstLoad = true;
-
-        } else {
-            alert("2") // Safari
-        }
-    } else {
-        firstLoad = true;
-
-    }
-
-    if (firstLoad) {
-        /*
-        Safari emits a popstate event on page load - check if firstLoad is true before animating
-        if it's false - the page has just been loaded 
-        */
-
-        var newPageArray = location.pathname.split('/'),
-            //this is the url of the page to be loaded 
-            newPage = newPageArray[newPageArray.length - 2];
-        console.log(newPageArray);
-
-        console.log(newLocation + " and " + newPage);
-        if (!isAnimating && newLocation != newPage) {
-            transitionPage();
-            changePage(newPage, false, true);
-        }
-    }
-    firstLoad = true;
-};
-
-
-function changePage(url, bool, boolFromHistory = false) {
-    isAnimating = true;
-    // trigger page animation
-
-
-    //if browser doesn't support CSS transitions
-    loadNewContent(url, bool, boolFromHistory);
-    newLocation = url;
-
-
-    isAnimating = false;
-
-    firstLoad = true;
-
-
-}
-
-
-function loadNewContent(url, bool, boolFromHistory = false) {
-    url = ('' == url) ? '' : url;
-    var newSection = 'cd-' + url.replace('.html', '');
-
-    var section = document.createElement('div');
-    section.className = "cd-main-content " + newSection;
-
-    let scrollContainer = document.getElementById('scroll-container')
-
-    fetch(url)
-        .then(function (response) {
-            return response.text();
-        })
-        .then(function (body) {
-            // Convert the HTML string into a document object
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(body, 'text/html');
-            console.log(doc);
-
-            let newContent = doc.getElementById('cd-main-content');
-
-            setTimeout(function () {
-                scrollContainer.innerHTML = '';
-                scrollContainer.appendChild(newContent);
-            }, 1000);
-
-
-            btn.classList.remove("is-active");
-
-            if (!boolFromHistory) tlTransitionMenu.reverse();
-
-            eventsCursor();
-
-            isAnimating = false;
-        });
-
-    if (url != window.location && bool) {
-        //add the new page to the window.history
-        //if the new page was triggered by a 'popstate' event, don't add it
-        window.history.pushState({
-            path: url
-        }, '', url);
-    }
-
-    // section.load(url + ' .cd-main-content > *', function (event) {
-    //     // load new content and replace <main> content with the new one
-    //     $('main').html(section);
-    //     //if browser doesn't support CSS transitions - dont wait for the end of transitions
-    //     var delay = (transitionsSupported()) ? 1200 : 0;
-    //     setTimeout(function () {
-    //         //wait for the end of the transition on the loading bar before revealing the new content
-    //         (section.hasClass('cd-about')) ? $('body').addClass('cd-about'): $('body').removeClass('cd-about');
-    //         $('body').removeClass('page-is-changing');
-    //         $('.cd-loading-bar').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
-    //             isAnimating = false;
-    //             $('.cd-loading-bar').off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
-    //         });
-
-    //         if (!transitionsSupported()) isAnimating = false;
-    //     }, delay);
-
-    //     if (url != window.location && bool) {
-    //         //add the new page to the window.history
-    //         //if the new page was triggered by a 'popstate' event, don't add it
-    //         window.history.pushState({
-    //             path: url
-    //         }, '', url);
-    //     }
-    // });
-}
 
 //////////
 // FORM

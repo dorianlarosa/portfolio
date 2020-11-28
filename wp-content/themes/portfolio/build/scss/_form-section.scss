@@ -1,5 +1,8 @@
-#form-section {
 
+//////////////////
+// FORM
+//////////////////
+#form-section {
     background: $white;
     position: relative;
     z-index: 1;
@@ -66,8 +69,6 @@
                     }
                 }
 
-
-
                 .text-succes {
                     color: $primary;
                     font-family: $font-family-text;
@@ -76,12 +77,11 @@
                     text-align: center;
                     opacity: 0;
                     transition: all .5s .5s;
-
                 }
             }
-
         }
 
+        // FORM CONTENT
         .form {
             width: 400%;
             display: flex;
@@ -179,7 +179,6 @@
                                 @include media-breakpoint-up(sm) {
                                     font-size: 16px;
                                     padding: 15px 25px;
-
                                 }
 
                                 &::placeholder {
@@ -197,7 +196,6 @@
                             textarea {
                                 height: 100%;
                                 max-height: 100%;
-
                             }
 
                             .error-field-text {
@@ -212,10 +210,9 @@
                             }
                         }
                     }
-
-
                 }
 
+                // CONTAINER BOTTOM BAR BUTTON
                 .page-form__bar-bottom {
                     background: $grey-light;
                     display: flex;
