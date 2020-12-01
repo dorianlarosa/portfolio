@@ -175,7 +175,7 @@ function vcn_enqueue_script()
 
   wp_deregister_script('jquery');
   wp_enqueue_script('gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js', array(), false, true);
-
+  wp_enqueue_script('scrollmagic-js', 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js', array(), false, true);
 
 
   wp_enqueue_script('my-js-theme', get_template_directory_uri() . '/js/script.js', [], false, true);

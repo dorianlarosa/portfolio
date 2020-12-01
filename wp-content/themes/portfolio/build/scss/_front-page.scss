@@ -82,6 +82,8 @@ $navbar-height-mobile:68px;
     .marbre {
         background-image: url('images/marbre-1.jpg');
         width: 20px;
+        background-size: cover;
+    
         left: calc(100% - 20px);
         height: 100%;
         position: absolute;
@@ -124,7 +126,7 @@ $navbar-height-mobile:68px;
         .marble {
             width: 48%;
             background-size: cover;
-            height: 250px;
+            height: 250px; 
 
             @include media-breakpoint-up(sm) {
                 height: 350px;

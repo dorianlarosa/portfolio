@@ -5418,6 +5418,10 @@ progress {
   padding: 0;
 }
 
+.no-animations {
+  transition: none !important;
+}
+
 body {
   background: white;
   cursor: none;
@@ -5754,13 +5758,13 @@ footer#header-section .content-header .title-page {
 @media (min-width: 992px) {
   section#header-section .content-header .title-page,
 footer#header-section .content-header .title-page {
-    font-size: 60px;
+    font-size: 46px;
   }
 }
 @media (min-width: 1200px) {
   section#header-section .content-header .title-page,
 footer#header-section .content-header .title-page {
-    font-size: 70px;
+    font-size: 52px;
   }
 }
 section#header-section .content-header .intro-page,
@@ -6076,15 +6080,21 @@ footer .container-texts .container-text .text-item:nth-child(2) {
   z-index: 1;
 }
 #form-section .container-form {
-  width: 100%;
+  width: calc(100% + 20px);
   max-width: 900px;
   overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
   margin-top: 4rem;
   box-shadow: 0 0 20px #00000021;
   position: relative;
   border: 6px solid black;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+@media (min-width: 992px) {
+  #form-section .container-form {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 #form-section .container-form #response-email-send {
   background-color: white;
@@ -6372,6 +6382,7 @@ footer .container-texts .container-text .text-item:nth-child(2) {
 #header-home-section .marbre {
   background-image: url("images/marbre-1.jpg");
   width: 20px;
+  background-size: cover;
   left: calc(100% - 20px);
   height: 100%;
   position: absolute;
@@ -6564,6 +6575,22 @@ footer .container-texts .container-text .text-item:nth-child(2) {
   position: relative;
 }
 
+.container-loader {
+  background: #000;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: all 1s;
+}
+.container-loader div {
+  color: white;
+}
+
 #navbar {
   position: fixed;
   left: 0;
@@ -6661,47 +6688,47 @@ footer .container-texts .container-text .text-item:nth-child(2) {
   height: 100%;
   width: 100%;
 }
-.nav .parts-bg-nav > div {
+.nav .parts-bg-nav .part-bg-nav {
   width: 0;
   position: absolute;
   height: 100%;
   background: black;
 }
-.nav .parts-bg-nav > div:nth-child(1) {
+.nav .parts-bg-nav .part-bg-nav:nth-child(1) {
   left: 0;
 }
-.nav .parts-bg-nav > div:nth-child(2) {
+.nav .parts-bg-nav .part-bg-nav:nth-child(2) {
   left: 16.6666666667%;
 }
 @media (max-width: 767.98px) {
-  .nav .parts-bg-nav > div:nth-child(2) {
+  .nav .parts-bg-nav .part-bg-nav:nth-child(2) {
     display: none;
   }
 }
-.nav .parts-bg-nav > div:nth-child(3) {
+.nav .parts-bg-nav .part-bg-nav:nth-child(3) {
   left: 33.3333333333%;
 }
 @media (max-width: 767.98px) {
-  .nav .parts-bg-nav > div:nth-child(3) {
+  .nav .parts-bg-nav .part-bg-nav:nth-child(3) {
     display: none;
   }
 }
-.nav .parts-bg-nav > div:nth-child(4) {
+.nav .parts-bg-nav .part-bg-nav:nth-child(4) {
   left: 50%;
 }
-.nav .parts-bg-nav > div:nth-child(5) {
+.nav .parts-bg-nav .part-bg-nav:nth-child(5) {
   left: 66.6666666667%;
 }
 @media (max-width: 767.98px) {
-  .nav .parts-bg-nav > div:nth-child(5) {
+  .nav .parts-bg-nav .part-bg-nav:nth-child(5) {
     display: none;
   }
 }
-.nav .parts-bg-nav > div:nth-child(6) {
+.nav .parts-bg-nav .part-bg-nav:nth-child(6) {
   left: 83.3333333333%;
 }
 @media (max-width: 767.98px) {
-  .nav .parts-bg-nav > div:nth-child(6) {
+  .nav .parts-bg-nav .part-bg-nav:nth-child(6) {
     display: none;
   }
 }
@@ -6832,15 +6859,13 @@ footer .container-texts .container-text .text-item:nth-child(2) {
     font-size: 50px;
   }
 }
-@media not all and (pointer: coarse) {
-  .nav .nav__inner .nav--items .nav--item .nav--item-link:hover .number-of-link {
-    opacity: 0;
-  }
-  .nav .nav__inner .nav--items .nav--item .nav--item-link:hover .nav--link-text {
-    margin-left: 10px;
-    -webkit-text-stroke: 1px transparent;
-    color: white;
-  }
+.nav .nav__inner .nav--items .nav--item .nav--item-link:hover .number-of-link {
+  opacity: 0;
+}
+.nav .nav__inner .nav--items .nav--item .nav--item-link:hover .nav--link-text {
+  margin-left: 10px;
+  -webkit-text-stroke: 1px transparent;
+  color: white;
 }
 .nav .nav__inner .marbles-container {
   width: 50%;

@@ -14,6 +14,35 @@
 <body>
     <main id="main">
 
+        <!-- LOADER -->
+        <!-- <div class="container-loader">
+        <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 350 500" style="" xml:space="preserve" width="350" height="500">
+<style type="text/css">
+
+	.svg-elem {
+            fill: none;
+            stroke: white;
+            stroke-width: 9;
+            stroke-miterlimit: 10;
+
+        }
+
+</style>
+ 
+                <g>
+                    <path class="svg-elem svg-elem-1 animate-svg-stroke-1 CneBJXjG_0" d="M19.5,144A127.5,127.5 0,1,1 274.5,144A127.5,127.5 0,1,1 19.5,144"></path>
+                    <path class="svg-elem svg-elem-2 animate-svg-stroke-2 CneBJXjG_1" d="M115.8,274.5L116.1,327.5L63.1,274.5L116.1,221.5Z"></path>
+                    <path class="svg-elem svg-elem-3 animate-svg-stroke-3 CneBJXjG_2" d="M148.6,20.2l172.9,134.3l-157,245L146.6,21.2C146.6,20.1,147.8,19.5,148.6,20.2z"></path>
+                    <path class="svg-elem svg-elem-4 animate-svg-stroke-4 CneBJXjG_3" width="128" height="108" d="M170.5 174.5 L298.5 174.5 L298.5 282.5 L170.5 282.5 Z"></path>
+                    <path class="svg-elem svg-elem-5 animate-svg-stroke-5 CneBJXjG_4" d="M154.7,191.5L42.5,346.5L192.5,459.5L176.5,174.5"></path>
+                    <path class="svg-elem svg-elem-6 animate-svg-stroke-6 CneBJXjG_5" d="M298.5,244.6L248.5,212.5L298.5,219"></path>
+                    <path class="svg-elem svg-elem-7 animate-svg-stroke-7 CneBJXjG_6" d="M238.7,111.9L212.5,121.3L249.5,134.1Z"></path>
+                </g>
+<style data-made-with="vivus-instant">.CneBJXjG_0{stroke-dasharray:802 804;stroke-dashoffset:803;animation:CneBJXjG_draw_0 2800ms linear 0ms infinite,CneBJXjG_fade 2800ms linear 0ms infinite;}.CneBJXjG_1{stroke-dasharray:256 258;stroke-dashoffset:257;animation:CneBJXjG_draw_1 2800ms linear 0ms infinite,CneBJXjG_fade 2800ms linear 0ms infinite;}.CneBJXjG_2{stroke-dasharray:892 894;stroke-dashoffset:893;animation:CneBJXjG_draw_2 2800ms linear 0ms infinite,CneBJXjG_fade 2800ms linear 0ms infinite;}.CneBJXjG_3{stroke-dasharray:472 474;stroke-dashoffset:473;animation:CneBJXjG_draw_3 2800ms linear 0ms infinite,CneBJXjG_fade 2800ms linear 0ms infinite;}.CneBJXjG_4{stroke-dasharray:665 667;stroke-dashoffset:666;animation:CneBJXjG_draw_4 2800ms linear 0ms infinite,CneBJXjG_fade 2800ms linear 0ms infinite;}.CneBJXjG_5{stroke-dasharray:110 112;stroke-dashoffset:111;animation:CneBJXjG_draw_5 2800ms linear 0ms infinite,CneBJXjG_fade 2800ms linear 0ms infinite;}.CneBJXjG_6{stroke-dasharray:92 94;stroke-dashoffset:93;animation:CneBJXjG_draw_6 2800ms linear 0ms infinite,CneBJXjG_fade 2800ms linear 0ms infinite;}@keyframes CneBJXjG_draw{100%{stroke-dashoffset:0;}}@keyframes CneBJXjG_fade{0%{stroke-opacity:1;}85.71428571428572%{stroke-opacity:1;}100%{stroke-opacity:0;}}@keyframes CneBJXjG_draw_0{14.285714285714285%{stroke-dashoffset: 803}61.904761904761905%{ stroke-dashoffset: 0;}100%{ stroke-dashoffset: 0;}}@keyframes CneBJXjG_draw_1{18.253968253968253%{stroke-dashoffset: 257}65.87301587301587%{ stroke-dashoffset: 0;}100%{ stroke-dashoffset: 0;}}@keyframes CneBJXjG_draw_2{22.22222222222222%{stroke-dashoffset: 893}69.84126984126985%{ stroke-dashoffset: 0;}100%{ stroke-dashoffset: 0;}}@keyframes CneBJXjG_draw_3{26.190476190476186%{stroke-dashoffset: 473}73.80952380952382%{ stroke-dashoffset: 0;}100%{ stroke-dashoffset: 0;}}@keyframes CneBJXjG_draw_4{30.158730158730158%{stroke-dashoffset: 666}77.77777777777779%{ stroke-dashoffset: 0;}100%{ stroke-dashoffset: 0;}}@keyframes CneBJXjG_draw_5{34.12698412698413%{stroke-dashoffset: 111}81.74603174603176%{ stroke-dashoffset: 0;}100%{ stroke-dashoffset: 0;}}@keyframes CneBJXjG_draw_6{38.09523809523809%{stroke-dashoffset: 93}85.71428571428571%{ stroke-dashoffset: 0;}100%{ stroke-dashoffset: 0;}}</style>
+</svg> -->
+
+        </div>
+
         <!-- CURSOR JS -->
         <div class="cursor"></div>
         <div class="cursor-follower"></div>

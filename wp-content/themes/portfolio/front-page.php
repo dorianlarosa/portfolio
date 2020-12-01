@@ -105,7 +105,7 @@
                 <p class="text-section">
                 Les gens les appellent souvent simplement des sites Web, des applications ou des plates-formes. La plupart du temps, j'essaye de concevoir des expériences utilisateur.
                 </p>
-                <a href="#" class="link-btn btn click">
+                <a data-type="page-transition" href="/a-propos/" class="link-btn btn click">
                     Découvrir
                 </a>
             </div>
