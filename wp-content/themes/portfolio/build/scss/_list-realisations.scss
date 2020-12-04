@@ -3,11 +3,11 @@
     margin-left: -10px;
     margin-right: -10px;
 
-    .item-projet { 
+    .item-projet {
         width: 100%;
         margin-top: 4rem;
-        display: block; 
- 
+        display: block;
+
         @include media-breakpoint-up(sm) {
             margin-top: 6rem;
         }
@@ -47,8 +47,8 @@
 
         &.hover {
             .number-projet {
-                color: $white;
-                -webkit-text-stroke: 1px transparent;
+                color: $white !important;
+                -webkit-text-stroke: 1px transparent !important;
             }
 
             .item-imgwrap {
@@ -64,58 +64,80 @@
             }
 
             .title-projet {
-                color: $white;
-                -webkit-text-stroke: 1px transparent;
+                color: $white !important;
+                -webkit-text-stroke: 1px transparent !important;
 
             }
         }
 
-        .number-projet {
-            color: transparent;
-            font-size: 50px;
-            -webkit-text-stroke: 1px $white;
-            font-family: $font-family-title;
-            transition: all .5s;
+        .content-number-project {
+            overflow: hidden;
 
-            @include media-breakpoint-up(sm) {
-                font-size: 70px;
-            }
+            .number-projet {
+                color: transparent;
+                font-size: 50px;
+                -webkit-text-stroke: 1px $white;
+                font-family: $font-family-title;
+                transition: color .5s, -webkit-text-stroke .5s;
 
-            @include media-breakpoint-up(lg) {
-                font-size: 80px;
+                @include media-breakpoint-up(sm) {
+                    font-size: 70px;
+                }
+
+                @include media-breakpoint-up(lg) {
+                    font-size: 80px;
+                }
             }
         }
+
 
         .item-imgwrap {
             overflow: hidden;
+            position: relative;
 
             .item-img {
                 width: 100%;
                 height: auto;
                 transition: all 2s cubic-bezier(0.25, 1, 0.3, 1);
+                border: 1px solid $primary;
             }
 
-        }
-
-        .title-projet {
-            text-align: left;
-            margin-top: 20px;
-            color: transparent;
-            font-size: 27px;
-            -webkit-text-stroke: 1px $white;
-            transition: all .5s;
-            margin-left: 0;
-            margin-right: 0;
-            width: 100%;
-
-            @include media-breakpoint-up(sm) {
-                font-size: 45px;
-            }
-
-            @include media-breakpoint-up(md) {
-                font-size: 60px;
-
+            .overlay {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: $primary;
+                width: 100%;
+                height: 100%;
             }
         }
+
+        .content-title-project {
+            overflow: hidden;
+
+            .title-projet {
+                text-align: left;
+                margin-top: 20px;
+                color: transparent;
+                font-size: 27px;
+                -webkit-text-stroke: 1px $white;
+                transition: color .5s, -webkit-text-stroke .5s;
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+
+                @include media-breakpoint-up(sm) {
+                    font-size: 45px;
+                }
+
+                @include media-breakpoint-up(md) {
+                    font-size: 60px;
+                }
+            }
+        }
+
+
+
     }
 }

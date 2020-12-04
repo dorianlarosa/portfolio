@@ -67,7 +67,7 @@ let mainContainer = document.querySelector("#main");
 var html = document.documentElement;
 var body = document.body;
 
-if (userAgentForScrollSmooth()) {
+if (!userAgentForScrollSmooth()) {
 
     var scroller = {
         target: scrollContainer,
@@ -433,7 +433,6 @@ function changePage(url, bool, boolFromHistory = false) {
     firstLoad = true;
 }
 
-
 function loadNewContent(url, bool, boolFromHistory = false) {
     url = ('' == url) ? '' : url;
     var newSection = 'cd-' + url.replace('.html', '');
@@ -505,7 +504,6 @@ var posX = 0,
 
 var lastScrolledLeft = window.scrollX;
 var lastScrolledTop = window.scrollY;
-
 
 
 // CURSOR FOLLOW MOUSE POSITION
@@ -594,10 +592,8 @@ function mouseScroll(e) {
         // Item relative to container parent
         var offsetTopProject = el.offsetTop + el.parentNode.parentNode.parentNode.offsetTop - mouseOfWindowY;
         var offsetBottomProject = offsetTopProject + el.offsetHeight;
-
         var offsetLeftProject = el.offsetLeft - mouseOfWindowX;
         var offsetRightProject = offsetLeftProject + el.offsetWidth;
-
 
         if (lastScrolledTop > offsetTopProject && lastScrolledTop < offsetBottomProject &&
             lastScrolledLeft > offsetLeftProject && lastScrolledLeft < offsetRightProject) {
@@ -615,7 +611,6 @@ function mouseScroll(e) {
 
         var offsetLeftProject = el.offsetLeft - mouseOfWindowX;
         var offsetRightProject = offsetLeftProject + el.offsetWidth;
-
 
         if (lastScrolledTop > offsetTopProject && lastScrolledTop < offsetBottomProject &&
             lastScrolledLeft > offsetLeftProject && lastScrolledLeft < offsetRightProject) {
@@ -645,12 +640,10 @@ function eventsCursor() {
         })
     });
 
-
     // Change cursor when mouse enter in project
     [].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
         el.addEventListener('mouseenter', function () {
             addCursorProject(el);
-
         })
     });
 
@@ -660,21 +653,13 @@ function eventsCursor() {
             removeCursorProject(el);
         })
     });
-
 }
-
-
-
-
 
 
 //////////
 // FORM
 //////////
-
-
-
-function updatePageform(formContact ,pageNumber) {
+function updatePageform(formContact, pageNumber) {
     formContact.classList.remove('page-1', 'page-2', 'page-3', 'page-4');
     formContact.classList.add('page-' + pageNumber);
 }
@@ -719,11 +704,11 @@ function formEvent() {
         el.addEventListener('click', function () {
 
             if (el.classList.contains("btn-next-page-form__page-1")) {
-                updatePageform(formContact,2);
+                updatePageform(formContact, 2);
             } else if (el.classList.contains("btn-next-page-form__page-2")) {
-                updatePageform(formContact,3);
+                updatePageform(formContact, 3);
             } else if (el.classList.contains("btn-next-page-form__page-3")) {
-                updatePageform(formContact,4);
+                updatePageform(formContact, 4);
             };
         })
     });
@@ -733,13 +718,13 @@ function formEvent() {
         el.addEventListener('click', function () {
 
             if (el.classList.contains("btn-previous-page-form__page-1")) {
-                updatePageform(formContact,0);
+                updatePageform(formContact, 0);
             } else if (el.classList.contains("btn-previous-page-form__page-2")) {
-                updatePageform(formContact,1);
+                updatePageform(formContact, 1);
             } else if (el.classList.contains("btn-previous-page-form__page-3")) {
-                updatePageform(formContact,2);
+                updatePageform(formContact, 2);
             } else if (el.classList.contains("btn-previous-page-form__page-4")) {
-                updatePageform(formContact,3);
+                updatePageform(formContact, 3);
             };
         })
     });
@@ -854,3 +839,183 @@ function formEvent() {
         requestForm.send('action=verification_form&name=' + dataNameInput + '&email=' + dataEmailInput + '&project=' + dataProjectInput + '&service=' + dataServiceInput + '&phone=' + dataPhoneInput + '&website=' + dataWebsiteInput);
     })
 }
+
+
+
+/////////////
+// SCROLL REVEAL
+/////////////
+var controller = new ScrollMagic.Controller();
+
+let i = 0;
+
+[].forEach.call(document.querySelectorAll('.reveal-header-image'), function (el) {
+    i = i + 200;
+    setTimeout(function () {
+        el.classList.add('active');
+    }, i);
+
+    i = i + 800;
+});
+
+
+[].forEach.call(document.querySelectorAll('.reveal-header-text-line'), function (el) {
+
+    setTimeout(function () {
+        el.classList.add('active');
+    }, i);
+
+    i = i + 100;
+});
+
+
+[].forEach.call(document.querySelectorAll('.reveal-header-adjectif'), function (el) {
+
+    setTimeout(function () {
+        el.classList.add('active');
+    }, i);
+
+    i = i + 200;
+});
+
+
+
+const reveal = gsap.utils.toArray('.reveal-text');
+reveal.forEach((text, i) => {
+    ScrollTrigger.create({
+        trigger: text,
+        toggleClass: "active",
+        start: "top 60%",
+        endTrigger: 'footer',
+    })
+});
+
+// const revealParagraphe = gsap.utils.toArray('.reveal-paragraphe');
+// revealParagraphe.forEach((image, i) => {
+//     ScrollTrigger.create({
+//         trigger: image,
+//         toggleClass: 'active',
+//         start: "top 60%",
+//         endTrigger: 'footer'
+
+//     })
+// });
+
+
+
+
+
+// const revealImageOp = gsap.utils.toArray('.reveal-image-opacity');
+// revealImageOp.forEach((imageContainer, i) => {
+//     ScrollTrigger.create({
+//         trigger: imageContainer,
+//         toggleClass: 'active',
+//         start: "top 60%",
+//         endTrigger: 'footer'
+//     })
+// });
+
+
+const revealParagraphe = gsap.utils.toArray('.reveal-paragraphe');
+revealParagraphe.forEach((text, i) => {
+    ScrollTrigger.create({
+        trigger: text,
+        toggleClass: 'active',
+        start: "top 60%",
+        endTrigger: 'footer'
+    })
+});
+
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+// const revealImage = gsap.utils.toArray('.reveal-image');
+// revealImage.forEach((imageContainer, i) => {
+//     ScrollTrigger.create({
+//         trigger: imageContainer,
+//         toggleClass: 'active',
+//         start: "top 60%",
+//         endTrigger: 'footer'
+//     })
+// });
+
+let revealContainers = document.querySelectorAll(".reveal-image");
+
+revealContainers.forEach((container) => {
+  let image = container.querySelector(".img");
+  let tlImage = gsap.timeline({
+    scrollTrigger: {
+      trigger: container,
+      toggleActions: "play none none reverse",
+      start: "top 60%",
+      markers: true
+    }
+  });
+
+  tlImage.set(container, { autoAlpha: 1 });
+  tlImage.from(container, 1.5, {
+    xPercent: -100,
+    ease: Power2.out,
+    opacity:0
+  });
+  tlImage.from(image, 1.5, {
+    xPercent: 100,
+    scale: 1.3,
+    delay: -1.5,
+    ease: Power2.out
+  });
+});
+
+
+gsap.from("#section-services .service-item", {
+    scrollTrigger: {
+        trigger: "#section-services .services-col",
+        toggleActions: "play none none reverse",
+        start: "top 60%"
+    },
+    x: -100,
+    duration: 2,
+    opacity:0,
+    ease: "power4.out",
+    stagger: 0.1
+});
+
+
+
+[].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
+
+    let picOverlay = el.querySelectorAll('.overlay');
+    let projetNumber = el.querySelectorAll('.number-projet');
+    let projectTitle = el.querySelectorAll('.title-projet');
+
+    let animateIn = new TimelineMax();
+
+    animateIn.from(projetNumber, {
+            y: "100%",
+            ease: "power1.out",
+            duration: 1
+        })
+        .fromTo(picOverlay, {
+            skewX: 30,
+            scale: 1.5,
+        }, {
+            skewX: 0,
+            xPercent: 110,
+            transformOrigin: "0% 95%",
+            ease: Power4.easeOut,
+            duration: 3.5
+
+        }, '=-.5')
+        .from(projectTitle, {
+            y: "100%",
+            ease: "power1.out",
+            duration: 1
+        }, '=-3')
+
+    var scene = new ScrollMagic.Scene({
+        triggerElement: el,
+        reverse: false // only do once
+    }).setTween(animateIn).addTo(controller)
+
+});
