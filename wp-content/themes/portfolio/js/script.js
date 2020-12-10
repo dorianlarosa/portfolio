@@ -513,8 +513,8 @@ TweenMax.to({}, 0.016, {
         posX += (mouseOfWindowX - posX) / 9;
         posY += (mouseOfWindowY - posY) / 9;
 
-        otherPosX += (mouseOfWindowX - otherPosX);
-        otherPosY += (mouseOfWindowY - otherPosY);
+        otherPosX += (mouseOfWindowX - otherPosX) / 2;
+        otherPosY += (mouseOfWindowY - otherPosY) / 2;
 
         TweenMax.set(follower, {
             css: {
@@ -569,7 +569,42 @@ function removeCursorProject(el) {
     cursor.classList.remove("active-projet");
     follower.classList.remove("active-projet");
     el.classList.remove("hover");
+}
 
+
+// FUNCTION ANIMATION TURBULENCE
+function turbulenceAnimation(elTurbulence, elDisplacement) {
+
+let tlTurb = new TimelineMax({
+    paused: true,
+    reverse: true
+});
+
+
+    tlTurb.fromTo(elTurbulence, .05, {
+        attr: {
+            baseFrequency: '0 0'
+        }
+    }, {
+        attr: {
+            baseFrequency: '0.01 0.01'
+        }
+    }).to(elTurbulence, 2, {
+            attr: {
+                baseFrequency: '0 0'
+            }
+        })
+        .fromTo(elDisplacement, 2, {
+            attr: {
+                scale: '20'
+            }
+        }, {
+            attr: {
+                scale: '0'
+            }
+        }, "=-2")
+
+    tlTurb.play();
 }
 
 // UPDATE MOUSE POSITION WHEN USE SCROLL
@@ -644,6 +679,10 @@ function eventsCursor() {
     [].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
         el.addEventListener('mouseenter', function () {
             addCursorProject(el);
+            let elTurbulence = document.getElementById('turbulence-' + el.dataset.id);
+            let elDisplacement = document.getElementById('displacement-' + el.dataset.id);
+            
+            turbulenceAnimation(elTurbulence, elDisplacement, el.dataset.id);
         })
     });
 
@@ -651,6 +690,10 @@ function eventsCursor() {
     [].forEach.call(document.querySelectorAll('.item-projet'), function (el) {
         el.addEventListener('mouseleave', function () {
             removeCursorProject(el);
+            let elTurbulence = document.getElementById('turbulence-' + el.dataset.id);
+            let elDisplacement = document.getElementById('displacement-' + el.dataset.id);
+            turbulenceAnimation(elTurbulence, elDisplacement);
+
         })
     });
 }
@@ -880,15 +923,7 @@ let i = 0;
 
 
 
-const reveal = gsap.utils.toArray('.reveal-text');
-reveal.forEach((text, i) => {
-    ScrollTrigger.create({
-        trigger: text,
-        toggleClass: "active",
-        start: "top 60%",
-        endTrigger: 'footer',
-    })
-});
+
 
 // const revealParagraphe = gsap.utils.toArray('.reveal-paragraphe');
 // revealParagraphe.forEach((image, i) => {
@@ -916,15 +951,15 @@ reveal.forEach((text, i) => {
 // });
 
 
-const revealParagraphe = gsap.utils.toArray('.reveal-paragraphe');
-revealParagraphe.forEach((text, i) => {
-    ScrollTrigger.create({
-        trigger: text,
-        toggleClass: 'active',
-        start: "top 60%",
-        endTrigger: 'footer'
-    })
-});
+// const revealParagraphe = gsap.utils.toArray('.reveal-paragraphe');
+// revealParagraphe.forEach((text, i) => {
+//     ScrollTrigger.create({
+//         trigger: text,
+//         toggleClass: 'active',
+//         start: "top 60%",
+//         endTrigger: 'footer'
+//     })
+// });
 
 
 
@@ -943,29 +978,30 @@ gsap.registerPlugin(ScrollTrigger);
 let revealContainers = document.querySelectorAll(".reveal-image");
 
 revealContainers.forEach((container) => {
-  let image = container.querySelector(".img");
-  let tlImage = gsap.timeline({
-    scrollTrigger: {
-      trigger: container,
-      toggleActions: "play none none reverse",
-      start: "top 60%",
-      markers: true
-    }
-  });
+    let image = container.querySelector(".img");
+    let tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: container,
+            toggleActions: "play none none reverse",
+            start: "top 60%"
+        }
+    });
 
-  tlImage.set(container, { autoAlpha: 1 });
-  tlImage.from(container, 1.5, {
-    xPercent: -100,
-    ease: Power2.out,
-    opacity:0
-  });
-  tlImage.from(image, 1.5, {
-    xPercent: 100,
-    scale: 1.3,
-    delay: -1.5,
-    ease: Power2.out
-  });
+    tl.set(container, {
+        autoAlpha: 1
+    });
+    tl.from(container, 1.5, {
+        xPercent: -100,
+        ease: Power2.out
+    });
+    tl.from(image, 1.5, {
+        xPercent: 100,
+        scale: 1.3,
+        delay: -1.5,
+        ease: Power2.out
+    });
 });
+
 
 
 gsap.from("#section-services .service-item", {
@@ -975,10 +1011,73 @@ gsap.from("#section-services .service-item", {
         start: "top 60%"
     },
     x: -100,
-    duration: 2,
-    opacity:0,
-    ease: "power4.out",
+    duration: 1,
+    opacity: 0,
     stagger: 0.1
+});
+
+// const reveal = gsap.utils.toArray('.reveal-text');
+// reveal.forEach((text, i) => {
+//     ScrollTrigger.create({
+//         trigger: text,
+//         toggleClass: "active",
+//         start: "top 60%",
+//         endTrigger: 'footer',
+//     })
+// });
+
+// let revealContainersText = document.querySelectorAll("#section-a-propos");
+
+// const reveal = gsap.utils.toArray('#section-a-propos .reveal-text');
+// reveal.forEach((text, i) => {
+
+//     console.log(text);
+//     gsap.from(text, {
+//         scrollTrigger: {
+//             trigger: revealContainersText,
+//             toggleActions: "play none none reverse",
+//             start: "top 60%",
+//             toggleClass: "active",
+//             endTrigger: 'footer',
+//             markers: true
+//         }
+//     });
+
+// });
+
+// gsap.from("#section-a-propos .reveal-paragraphe", {
+//     scrollTrigger: {
+//         trigger: revealContainersText,
+//         toggleActions: "play none none reverse",
+//         start: "top 60%"
+//     },
+//     y: 400,
+//     duration: 1,
+//     ease: "none",
+//     opacity: 0
+
+// });
+
+// REVEAL TEXT BACKGROUND
+[].forEach.call(document.querySelectorAll('.reveal-text'), function (el) {
+    var triggerElement = el.closest("section");
+    new ScrollMagic.Scene({
+            triggerElement: triggerElement,
+            reverse: true, // only do once
+        })
+        .setClassToggle(el, "active") // add class to reveal
+        .addTo(controller)
+});
+
+// REVEAL TEXT PARAGRAPHE FROM BOTTOM
+[].forEach.call(document.querySelectorAll('.reveal-b'), function (el) {
+    var triggerElement = el.closest("section");
+    new ScrollMagic.Scene({
+            triggerElement: triggerElement,
+            reverse: true, // only do once
+        })
+        .setClassToggle(el, "active") // add class to reveal
+        .addTo(controller)
 });
 
 
@@ -1015,7 +1114,7 @@ gsap.from("#section-services .service-item", {
 
     var scene = new ScrollMagic.Scene({
         triggerElement: el,
-        reverse: false // only do once
+        reverse: true // only do once
     }).setTween(animateIn).addTo(controller)
 
 });

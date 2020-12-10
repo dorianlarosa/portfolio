@@ -5641,18 +5641,21 @@ textarea:focus {
   transition-delay: 0s;
 }
 
-.reveal-paragraphe {
-  transform: translateY(50px);
-  transition: 1s;
+.reveal-b {
+  transform: translateY(150px);
+  transition: 1.5s;
   opacity: 0;
 }
-.reveal-paragraphe.active {
+.reveal-b.active {
   transform: translateY(0);
   opacity: 1;
 }
 
 .reveal-image {
   transform-origin: left;
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
 }
 .reveal-image .img {
   transform-origin: left;
@@ -5927,6 +5930,9 @@ footer h2 {
   margin-left: auto;
   margin-right: auto;
   width: 73%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 section h2.title-white,
 footer h2.title-white {
@@ -7089,16 +7095,30 @@ footer .container-texts .container-text .text-item:nth-child(2) {
 .list-realisations .item-projet:nth-child(2n) {
   margin-left: auto;
 }
+.list-realisations .item-projet:nth-child(1) .item-imgwrap .item-img {
+  filter: url(#noise-1);
+}
+.list-realisations .item-projet:nth-child(2) .item-imgwrap .item-img {
+  filter: url(#noise-2);
+}
+.list-realisations .item-projet:nth-child(3) .item-imgwrap .item-img {
+  filter: url(#noise-3);
+}
+.list-realisations .item-projet:nth-child(4) .item-imgwrap .item-img {
+  filter: url(#noise-4);
+}
+.list-realisations .item-projet:nth-child(5) .item-imgwrap .item-img {
+  filter: url(#noise-5);
+}
+.list-realisations .item-projet:nth-child(6) .item-imgwrap .item-img {
+  filter: url(#noise-6);
+}
 .list-realisations .item-projet.hover .number-projet {
   color: white !important;
   -webkit-text-stroke: 1px transparent !important;
 }
 .list-realisations .item-projet.hover .item-imgwrap img {
-  transform: translateX(-1.75rem);
-  transform: scale(1.2);
-  -webkit-filter: grayscale(100%);
   /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
 }
 .list-realisations .item-projet.hover .title-projet {
   color: white !important;
@@ -7142,6 +7162,9 @@ footer .container-texts .container-text .text-item:nth-child(2) {
   background: #101010;
   width: 100%;
   height: 100%;
+}
+.list-realisations .item-projet .item-imgwrap .svg-filter {
+  position: absolute;
 }
 .list-realisations .item-projet .content-title-project {
   overflow: hidden;

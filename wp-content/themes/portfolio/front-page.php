@@ -55,7 +55,7 @@
                qui à de <span class="text-action">l'impact</span>
             </span>
         </h2>
-        <p class="text-section text-white reveal-paragraphe">
+        <p class="text-section text-white reveal-b">
             Il est primordial de se démarquer des autres sites web, c'est la raison pour laquelle j'accompagne les marques les plus ambitieuse dans leurs développement
         </p>
 
@@ -116,7 +116,7 @@
     </div>
     <div class="wrapper-section">
 
-        <h2> <span class="reveal-text reveal-text__primary">Un artisan du <span class="text-action">web</span></span></h2>
+        <h2 class="title-section"> <span class="reveal-text reveal-text__primary">Un artisan du <span class="text-action">web</span></span></h2>
         <div class="row">
 
             <div class="col-12 col-lg-6 col-element col-element__text">
@@ -130,16 +130,16 @@
                         Mes engagements
                     </span>
                 </h3>
-                <p class="text-section reveal-paragraphe">
+                <p class="text-section reveal-b">
                     Les gens les appellent souvent simplement des sites Web, des applications ou des plates-formes. La plupart du temps, j'essaye de concevoir des expériences utilisateur.
                 </p>
-                <a data-type="page-transition" href="/a-propos/" class="link-btn btn click reveal-paragraphe">
+                <a data-type="page-transition" href="/a-propos/" class="link-btn btn click reveal-b">
                     Découvrir
                 </a>
             </div>
 
             <div class="col-12 col-lg-6 col-element col-element__image">
-                <div class="container-image reveal-image-opacity">
+                <div class="container-image reveal-image">
                     <div class="portrait img">
 
                     </div>
